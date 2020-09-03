@@ -46,7 +46,7 @@ Type here: universities mapped
 
 SrNo | Name | Faculty or Student | Department| Institute | Email id
 :--|:--|:--|:--|:--|:--|
-1 | Mrs. Bindu Rani | Faculty | I.T | Inderprastha Engineering College, Ghaziabad | abc@example.com
+1 | Dr. Bindu Rani | Faculty | I.T | Inderprastha Engineering College, Ghaziabad | abc@example.com
 2 | Utkarsh Sharma | Student | I.T | Inderprastha Engineering College, Ghaziabad |abc@example.com
 3 | Shubham Bisht | Student | I.T | Inderprastha Engineering College, Ghaziabad |abc@example.com
 4 | Nishant | Student | I.T | Inderprastha Engineering College, Ghaziabad |abc@example.com
