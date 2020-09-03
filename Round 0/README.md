@@ -28,17 +28,17 @@ Type here: courses aligned
 
 Type here: universities mapped
 
-<b>Name of Developer | <b> (of professor only (no prefix Prof/Mr/MRS) - - - - - -
+<b>Name of Developer | <b> Bindu Rani - - - - - -
 :--|:--|
-<b> Institute | <b> My Institute name
+<b> Institute | <b> Inderprastha Engineering College
 <b> Email id|     <b> abc@example.com
-<b> Department | Name of the department in which you work
+<b> Department | I.T
 
 #### Mentor Details
 
 <b>Mentored by | <b> (of professor only (no prefix Prof/Mr/MRS) - - - - - -
 :--|:--|
-<b> Institute | <b> Institute name
+<b> Institute | <b> Inderprastha Engineering College
 <b> Email id|     <b> abc@example.com
 <b> Department | Name of the department
 
