@@ -28,7 +28,7 @@ Type here: courses aligned
 
 Type here: universities mapped
 
-<b>Name of Developer | <b> Bindu Rani - - - - - -
+<b>Name of Developer | <b> Bindu Rani
 :--|:--|
 <b> Institute | <b> Inderprastha Engineering College
 <b> Email id|     <b> abc@example.com
