@@ -26,7 +26,7 @@ Type here: courses aligned
 
 <h5> Universities Mapped : </h5>
 
-Type here: universities mapped
+Dr. APJ Abdul Kalam University, Lucknow
 
 <b>Name of Developer | <b> Bindu Rani
 :--|:--|
