@@ -47,10 +47,10 @@ Type here: universities mapped
 SrNo | Name | Faculty or Student | Department| Institute | Email id
 :--|:--|:--|:--|:--|:--|
 1 | Dr. Bindu Rani | Faculty |  Information Technology | Inderprastha Engineering College, Ghaziabad | abc@example.com
-2 | Utkarsh Sharma | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |abc@example.com
-3 | Shubham Bisht | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |abc@example.com
-4 | Nishant | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |abc@example.com
-5 | Yatin Singhania | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |abc@example.com
+2 | Utkarsh Sharma | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |utkarshstudent1@gmail.com
+3 | Shubham Bisht | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |Shubh.manu44@gmail.com
+4 | Nishant | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |nishantmishra9910@gmail.com
+5 | Yatin Singhania | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |singhaniayatin27@gmail.com
 
 <br>
 for more details on Rounds visit : <b> [HERE](http://vlabs.iitb.ac.in/gitlab/Community-Docs/New-Lab-development/List-of-Rounds/blob/master/README.md) </b>
