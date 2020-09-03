@@ -22,7 +22,7 @@ Type here: the target audience
 
 <h5> Course Alignment : </h5>
 
-Type here: courses aligned
+B.Tech CSE /IT , MCA students
 
 <h5> Universities Mapped : </h5>
 
