@@ -1,133 +1,86 @@
-/*
- * Data structures to assist internal implementation of algorithmic visualizations
- */
-
-// Make sure to check the type of the objects passed in to avoid bugs (especially if used for comparisons)
-var ObjectPair = function(objectOne, objectTwo){
-	this.getFirst = function(){
-		return objectOne;
-	}
-
-	this.getSecond = function(){
-		return objectTwo;
-	}
-
-	this.setFirst = function(newObjectOne){
-		objectOne = newObjectOne;
-	}
-
-	this.setSecond = function(newObjectTwo){
-		objectTwo = newObjectTwo;
-	}
-}
-
-ObjectPair.compare = function(objPairOne, objPairTwo){
-	if(objPairOne.getFirst() > objPairTwo.getFirst()) return 1;
-	else if(objPairOne.getFirst() < objPairTwo.getFirst()) return -1;
-	else{
-		if(objPairOne.getSecond() > objPairTwo.getSecond()) return 1;
-		if(objPairOne.getSecond() < objPairTwo.getSecond()) return -1;
-		else return 0;
-	}
-}
-
-// Make sure to check the type of the objects passed in to avoid bugs (especially if used for comparisons)
-var ObjectTriple = function(objectOne, objectTwo, objectThree){
-	this.getFirst = function(){
-		return objectOne;
-	}
-
-	this.getSecond = function(){
-		return objectTwo;
-	}
-
-	this.getThird = function(){
-		return objectThree;
-	}
-
-	this.setFirst = function(newObjectOne){
-		objectOne = newObjectOne;
-	}
-
-	this.setSecond = function(newObjectTwo){
-		objectTwo = newObjectTwo;
-	}
-
-	this.setThird = function(newObjectThree){
-		objectThree = newObjectThree;
-	}
-}
-
-ObjectTriple.compare = function(objTripleOne, objTripleTwo){
-	if(objTripleOne.getFirst() > objTripleTwo.getFirst()) return 1;
-	else if(objTripleOne.getFirst() < objTripleTwo.getFirst()) return -1;
-	else{
-		if(objTripleOne.getSecond() > objTripleTwo.getSecond()) return 1;
-		if(objTripleOne.getSecond() < objTripleTwo.getSecond()) return -1;
-		else{
-			if(objTripleOne.getThird() > objTripleTwo.getThird()) return 1;
-			if(objTripleOne.getThird() < objTripleTwo.getThird()) return -1;
-			else return 0;
-		}
-	}
-}
-
-var UfdsHelper = function(){
-	/*
-	 * Structure of internalUfds:
-	 * - key: inserted key
-	 * - value: JS object with:
-	 *          - "parent"
-	 *          - "rank"
-	 */
-	var self = this;
-	var internalUfds = {};
-
-	this.insert = function(insertedKey){
-		if(internalUfds[insertedKey] != null) return false;
-
-		var newElement = {};
-		newElement["parent"] = insertedKey;
-		newElement["rank"] = 0;
-
-		internalUfds[insertedKey] = newElement;
-	}
-
-	this.findSet = function(key){
-		if(internalUfds[key] == null) return false;
-
-		var currentParent = internalUfds[key]["parent"];
-		var currentElement = key;
-		while(currentParent != currentElement){
-			currentElement = currentParent;
-			currentParent = internalUfds[currentElement]["parent"];
-		}
-		internalUfds[key]["parent"] = currentParent;
-
-		return currentParent;
-	}
-
-	this.unionSet = function(firstKey, secondKey){
-		if(internalUfds[firstKey] == null || internalUfds[secondKey] == null) return false;
-		if(self.isSameSet(firstKey,secondKey)) return true;
-
-		var firstSet = self.findSet(firstKey);
-		var secondSet = self.findSet(secondKey);
-
-		if(internalUfds[firstSet]["rank"] > internalUfds[secondSet]["rank"]){
-			internalUfds[firstSet]["parent"] = secondSet;
-			internalUfds[secondSet]["rank"]++;
-		}
-
-		else{
-			internalUfds[secondSet]["parent"] = firstSet;
-			internalUfds[firstSet]["rank"]++;
-		}
-	}
-
-	this.isSameSet = function(firstKey, secondKey){
-		if(internalUfds[firstKey] == null || internalUfds[secondKey] == null) return false;
-
-		return self.findSet(firstKey) == self.findSet(secondKey);
-	}
-}
+var ObjectPair = function (t, n) {
+  (this.getFirst = function () {
+    return t;
+  }),
+    (this.getSecond = function () {
+      return n;
+    }),
+    (this.setFirst = function (n) {
+      t = n;
+    }),
+    (this.setSecond = function (t) {
+      n = t;
+    });
+};
+ObjectPair.compare = function (t, n) {
+  return t.getFirst() > n.getFirst()
+    ? 1
+    : t.getFirst() < n.getFirst()
+    ? -1
+    : t.getSecond() > n.getSecond()
+    ? 1
+    : t.getSecond() < n.getSecond()
+    ? -1
+    : 0;
+};
+var ObjectTriple = function (t, n, e) {
+  (this.getFirst = function () {
+    return t;
+  }),
+    (this.getSecond = function () {
+      return n;
+    }),
+    (this.getThird = function () {
+      return e;
+    }),
+    (this.setFirst = function (n) {
+      t = n;
+    }),
+    (this.setSecond = function (t) {
+      n = t;
+    }),
+    (this.setThird = function (t) {
+      e = t;
+    });
+};
+ObjectTriple.compare = function (t, n) {
+  return t.getFirst() > n.getFirst()
+    ? 1
+    : t.getFirst() < n.getFirst()
+    ? -1
+    : t.getSecond() > n.getSecond()
+    ? 1
+    : t.getSecond() < n.getSecond()
+    ? -1
+    : t.getThird() > n.getThird()
+    ? 1
+    : t.getThird() < n.getThird()
+    ? -1
+    : 0;
+};
+var UfdsHelper = function () {
+  var t = this,
+    n = {};
+  (this.insert = function (t) {
+    if (null != n[t]) return !1;
+    var e = {};
+    (e.parent = t), (e.rank = 0), (n[t] = e);
+  }),
+    (this.findSet = function (t) {
+      if (null == n[t]) return !1;
+      for (var e = n[t].parent, r = t; e != r; ) e = n[(r = e)].parent;
+      return (n[t].parent = e), e;
+    }),
+    (this.unionSet = function (e, r) {
+      if (null == n[e] || null == n[r]) return !1;
+      if (t.isSameSet(e, r)) return !0;
+      var i = t.findSet(e),
+        u = t.findSet(r);
+      n[i].rank > n[u].rank
+        ? ((n[i].parent = u), n[u].rank++)
+        : ((n[u].parent = i), n[i].rank++);
+    }),
+    (this.isSameSet = function (e, r) {
+      return null != n[e] && null != n[r] && t.findSet(e) == t.findSet(r);
+    });
+};

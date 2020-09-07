@@ -1,441 +1,342 @@
-// Defines ONE edge object
-// Direction of edge is a -> b
-// Set styles in properties.js and the CSS files!!!
-
-/*
- * Constants for "type":
- * EDGE_TYPE_UDE = UnDirected Edge
- * EDGE_TYPE_DE = Directed Edge
- * EDGE_TYPE_BDE = BiDirectional Edge
- */
-
-// Marker objects
-
-markerSvg.append("marker")
-          .attr("id", "arrow")
-          .attr("viewBox", "0 -5 10 10")
-          .attr('refX', ARROW_REFX)
-          .attr("markerWidth", ARROW_MARKER_WIDTH)
-          .attr("markerHeight", ARROW_MARKER_HEIGHT)
-          .attr("orient", "auto")
-          .append("path")
-              .attr("d", "M0,-5 L10,0 L0,5")
-              .attr('fill', ARROW_FILL);
-
-markerSvg.append("marker")
-          .attr("id", "backwardArrow")
-          .attr("viewBox", "-10 -5 10 10")
-          .attr('refX', -1*ARROW_REFX)
-          .attr("markerWidth", ARROW_MARKER_WIDTH)
-          .attr("markerHeight", ARROW_MARKER_HEIGHT)
-          .attr("orient", "auto")
-          .append("path")
-              .attr("d", "M0,-5 L-10,0 L0,5")
-              .attr('fill', ARROW_FILL);
-
-// GraphEdgeWidget object
-// TODO: Better implementation of edge weight
-
-var GraphEdgeWidget = function(graphVertexA, graphVertexB, edgeIdNumber, type, weight){
-  if(weight == null || isNaN(weight)) weight = 1;
-
-  var self = this;
-
-  var defaultAnimationDuration = 250; // millisecond
-
-  var line;
-  var clickableArea;
-  var weightText;
-  var weightTextPath;
-  var weightTextSpan
-
-  // var vertexA = graphVertexA.getClassNumber();
-  // var vertexB = graphVertexB.getClassNumber();
-
-  var edgeGenerator = d3.svg.line()
-                        .x(function(d){return d.x;})
-                        .y(function(d){return d.y;})
-                        .interpolate("linear");
-
-  var lineCommand = edgeGenerator(calculatePath());
-  var initCommand = edgeGenerator([calculatePath()[0],calculatePath()[0]]);
-
-  var attributeList = {
-    "path":{
-      "id": null,
-      "class": null,
-      "d": null,
-      "stroke": null,
-      "stroke-width": null
-    },
-    "weight":{
-      "id": null,
-      "startOffset": null,
-      "dy": null,
-      "fill": null,
-      "font-family": null,
-      "font-weight": null,
-      "font-size": null,
-      "text-anchor": null,
-      "text": null
-    }
-  };
-
-  updatePath();
-  init();
-
-  this.redraw = function(duration){
-    draw(duration);
-  }
-
-  this.animateHighlighted = function(duration){
-    if(duration == null || isNaN(duration)) duration = defaultAnimationDuration;
-    if(duration <= 0) duration = 1;
-
-    edgeSvg.append("path")
-          .attr("id", "tempEdge" + line.attr("id"))
-          .attr("stroke", graphEdgeProperties["animateHighlightedPath"]["stroke"])
-          .attr("stroke-width", graphEdgeProperties["animateHighlightedPath"]["stroke-width"])
-          .transition()
-          .duration(duration)
-          .each("start", function(){
-            edgeSvg.select("#tempEdge" + line.attr("id"))
-                  .attr("d", initCommand);
-          })
-          .attr("d", lineCommand)
-          .each("end", function(){
-            line.attr("stroke", graphEdgeProperties["path"]["highlighted"]["stroke"])
-                .attr("stroke-width", graphEdgeProperties["path"]["stroke-width"]);
-
-            edgeSvg.select("#tempEdge" + line.attr("id"))
-                  .remove();
-
-            draw(0);
-          })
-  }
-
-  this.showEdge = function(){
-    attributeList["path"]["d"] = lineCommand;
-    attributeList["path"]["stroke-width"] = graphEdgeProperties["path"]["stroke-width"];
-  }
-
-  this.hideEdge = function(){
-    // attributeList["path"]["stroke-width"] = 0;
-    attributeList["path"]["d"] = initCommand;
-  }
-
-  this.showWeight = function(){
-    attributeList["weight"]["font-size"] = graphEdgeProperties["weight"]["font-size"];
-  }
-
-  this.hideWeight = function(){
-    attributeList["weight"]["font-size"] = 0;
-  }
-
-  this.stateEdge = function(stateName){
-    var key;
-
-    for(key in graphEdgeProperties["path"][stateName]){
-      attributeList["path"][key] = graphEdgeProperties["path"][stateName][key];
-    }
-
-     for(key in graphEdgeProperties["weight"][stateName]){
-      attributeList["weight"][key] = graphEdgeProperties["weight"][stateName][key];
-    }
-  }
-
-  // Removes the edge (no animation)
-  // If you want animation, hide & redraw the edge first, then call this function
-  this.removeEdge = function(){
-    graphVertexA.removeEdge(self);
-    graphVertexB.removeEdge(self);
-
-    line.remove();
-    weightText.remove();
-  }
-
-  this.refreshPath = function(){
-    var tempInit = initCommand;
-
-    updatePath();
-
-    if(attributeList["path"]["d"] == tempInit) attributeList["path"]["d"] = initCommand;
-    else attributeList["path"]["d"] = lineCommand;
-  }
-
-  this.changeVertexA = function(newGraphVertexA){
-    var edgeDrawn = false;
-
-    if(attributeList["path"]["d"] == lineCommand) edgeDrawn = true;
-
-    graphVertexA.removeEdge(self);
-    graphVertexA = newGraphVertexA;
-    // vertexA =  graphVertexA.getClassNumber();
-
-    updatePath();
-
-    lineCommand = edgeGenerator(calculatePath());
-    initCommand = edgeGenerator([calculatePath()[0]]);
-    
-    attributeList["path"]["d"] = initCommand;
-
-    graphVertexA.addEdge(self);
-
-    if(edgeDrawn) attributeList["path"]["d"] = lineCommand;
-  }
-
-  this.changeVertexB = function(newGraphVertexB){
-    var edgeDrawn = false;
-
-    if(attributeList["path"]["d"] == lineCommand) edgeDrawn = true;
-
-    graphVertexB.removeEdge(self);
-    graphVertexB = newGraphVertexB;
-    // vertexB =  graphVertexB.getClassNumber();
-
-    updatePath();
-
-    lineCommand = edgeGenerator(calculatePath());
-    initCommand = edgeGenerator([calculatePath()[0]]);
-    
-    attributeList["path"]["d"] = initCommand;
-
-    graphVertexB.addEdge(self);
-
-    if(edgeDrawn) attributeList["path"]["d"] = lineCommand;
-  }
-
-  this.changeType = function(newType){
-    type = newType;
-
-    switch(type){
-      case EDGE_TYPE_UDE:
-        attributeList["path"]["class"] = "ude";
-        break;
-      case EDGE_TYPE_DE:
-        attributeList["path"]["class"] = "de";
-        break;
-      case EDGE_TYPE_BDE:
-        attributeList["path"]["class"] = "bde";
-        break;
-      default:
-        break;
-    }
-  }
-
-  this.changeWeight = function(newWeight){
-    weight = newWeight;
-    attributeList["weight"]["text"] = weight;
-  }
-
-  this.getVertex = function(){
-    return [graphVertexA, graphVertexB];
-  }
-
-  this.getAttributes = function(){
-    return deepCopy(attributeList["path"]);
-  }
-
-  this.getType = function(){
-    return type;
-  }
-
-  // Helper Functions
-
-  function init(){
-    attributeList["path"]["id"] = "e" + edgeIdNumber;
-    attributeList["path"]["d"] = initCommand;
-    attributeList["path"]["stroke"] = graphEdgeProperties["path"]["default"]["stroke"];
-    attributeList["path"]["stroke-width"] = graphEdgeProperties["path"]["default"]["stroke-width"];
-
-    switch(type){
-      case EDGE_TYPE_UDE:
-        attributeList["path"]["class"] = "ude";
-        break;
-      case EDGE_TYPE_DE:
-        attributeList["path"]["class"] = "de";
-        break;
-      case EDGE_TYPE_BDE:
-        attributeList["path"]["class"] = "bde";
-        break;
-      default:
-        break;
-    }
-
-    attributeList["weight"]["id"] = "ew" + edgeIdNumber;
-    attributeList["weight"]["startOffset"] = graphEdgeProperties["weight"]["default"]["startOffset"];
-    attributeList["weight"]["dy"] = graphEdgeProperties["weight"]["default"]["dy"];
-    attributeList["weight"]["fill"] = graphEdgeProperties["weight"]["default"]["fill"];
-    attributeList["weight"]["font-family"] = graphEdgeProperties["weight"]["default"]["font-family"];
-    attributeList["weight"]["font-size"] = 0;
-    attributeList["weight"]["font-weight"] = graphEdgeProperties["weight"]["default"]["font-weight"];
-    attributeList["weight"]["text-anchor"] = graphEdgeProperties["weight"]["default"]["text-anchor"];
-    attributeList["weight"]["text"] = weight;
-
-    line = edgeSvg.append("path");
-
-    line.attr("id", attributeList["path"]["id"])
-        .attr("class", attributeList["path"]["class"]);
-
-    try {
-    if (attributeList["path"]["d"] != "MNaN,NaNLNaN,NaN")
-    line.attr("d", attributeList["path"]["d"])
-        .attr("stroke", attributeList["path"]["stroke"])
-        .attr("stroke-width", attributeList["path"]["stroke-width"]);
-    } catch(err) {}
-    weightText = edgeWeightSvg.append("text");
-
-    weightText.attr("id", attributeList["weight"]["id"]);
-
-    weightText.attr("fill", attributeList["weight"]["fill"])
-              .attr("font-family", attributeList["weight"]["font-family"])
-              .attr("font-size", attributeList["weight"]["font-size"])
-              //.attr("font-size", 16)
-              .attr("font-weight", attributeList["weight"]["font-weight"])
-              .attr("text-anchor", attributeList["weight"]["text-anchor"]);
-
-    weightTextPath = weightText.append("textPath")
-                              .attr("xlink:href", function(){
-                                return "#" + attributeList["path"]["id"];
-                              })
-                              .attr("startOffset", attributeList["weight"]["startOffset"]);
-
-    weightTextSpan = weightTextPath.append("tspan")
-                                  .attr("dy", attributeList["weight"]["dy"])
-                                  .text(function(){
-                                    return attributeList["weight"]["text"];
-                                  });
-  }
-
-  function cxA(){
-    if (graphVertexA)
-      return parseFloat(graphVertexA.getAttributes()["outerVertex"]["cx"]);
-  }
-
-  function cyA(){
-    if (graphVertexA)
-      return parseFloat(graphVertexA.getAttributes()["outerVertex"]["cy"]);
-  }
-
-  function rA(){
-    if (graphVertexA)
-      return parseFloat(graphVertexA.getAttributes()["outerVertex"]["r"]);
-  }
-
-  function cxB(){
-    if (graphVertexA)
-      return parseFloat(graphVertexB.getAttributes()["outerVertex"]["cx"]);
-  }
-
-  function cyB(){
-    if (graphVertexA)
-      return parseFloat(graphVertexB.getAttributes()["outerVertex"]["cy"]);
-  }
-
-  function rB(){
-    if (graphVertexA)
-      return parseFloat(graphVertexB.getAttributes()["outerVertex"]["r"]);
-  }
-
-  function calculatePath(){
-    var x1 = cxA(), y1 = cyA();
-    var x2 = cxB(), y2 = cyB();
-    
-    var pts = getVertexLineIntersectionPoint(x1, y1, x2, y2, rA(), x1, y1);
-    var pts2 = getVertexLineIntersectionPoint(x1, y1, x2, y2, rB(), x2, y2);
-    var min = 5000;
-    var save1 = 0, save2 = 0;
-    for (var i=1; i<=3; i+=2) 
-      for (var j=1; j<=3; j+=2) 
-    {
-      var d = Math.sqrt((pts[i-1]-pts2[j-1])*(pts[i-1]-pts2[j-1]) + (pts[i] - pts2[j])*(pts[i] - pts2[j]));
-      if (d < min) {
-        min = d;
-        save1 = i; save2 = j;
+markerSvg
+  .append("marker")
+  .attr("id", "arrow")
+  .attr("viewBox", "0 -5 10 10")
+  .attr("refX", ARROW_REFX)
+  .attr("markerWidth", ARROW_MARKER_WIDTH)
+  .attr("markerHeight", ARROW_MARKER_HEIGHT)
+  .attr("orient", "auto")
+  .append("path")
+  .attr("d", "M0,-5 L10,0 L0,5")
+  .attr("fill", ARROW_FILL),
+  markerSvg
+    .append("marker")
+    .attr("id", "backwardArrow")
+    .attr("viewBox", "-10 -5 10 10")
+    .attr("refX", -1 * ARROW_REFX)
+    .attr("markerWidth", ARROW_MARKER_WIDTH)
+    .attr("markerHeight", ARROW_MARKER_HEIGHT)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("d", "M0,-5 L-10,0 L0,5")
+    .attr("fill", ARROW_FILL);
+var GraphEdgeWidget = function (t, e, r, a, i) {
+  (null == i || isNaN(i)) && (i = 1);
+  var h,
+    n,
+    o,
+    s,
+    d = this,
+    g = 250,
+    p = d3.svg
+      .line()
+      .x(function (t) {
+        return t.x;
+      })
+      .y(function (t) {
+        return t.y;
+      })
+      .interpolate("linear"),
+    l = p(c()),
+    f = p([c()[0], c()[0]]),
+    u = {
+      path: {
+        id: null,
+        class: null,
+        d: null,
+        stroke: null,
+        "stroke-width": null,
+      },
+      weight: {
+        id: null,
+        startOffset: null,
+        dy: null,
+        fill: null,
+        "font-family": null,
+        "font-weight": null,
+        "font-size": null,
+        "text-anchor": null,
+        text: null,
+      },
+    };
+  function c() {
+    for (
+      var r = (function () {
+          if (t) return parseFloat(t.getAttributes().outerVertex.cx);
+        })(),
+        a = (function () {
+          if (t) return parseFloat(t.getAttributes().outerVertex.cy);
+        })(),
+        i = (function () {
+          if (t) return parseFloat(e.getAttributes().outerVertex.cx);
+        })(),
+        h = (function () {
+          if (t) return parseFloat(e.getAttributes().outerVertex.cy);
+        })(),
+        n = w(
+          r,
+          a,
+          i,
+          h,
+          (function () {
+            if (t) return parseFloat(t.getAttributes().outerVertex.r);
+          })(),
+          r,
+          a
+        ),
+        o = w(
+          r,
+          a,
+          i,
+          h,
+          (function () {
+            if (t) return parseFloat(e.getAttributes().outerVertex.r);
+          })(),
+          i,
+          h
+        ),
+        s = 5e3,
+        d = 0,
+        g = 0,
+        p = 1;
+      p <= 3;
+      p += 2
+    )
+      for (var l = 1; l <= 3; l += 2) {
+        var f = Math.sqrt(
+          (n[p - 1] - o[l - 1]) * (n[p - 1] - o[l - 1]) +
+            (n[p] - o[l]) * (n[p] - o[l])
+        );
+        f < s && ((s = f), (d = p), (g = l));
       }
-    }
-    
-    var beginPoint = {"x": pts[save1-1], "y": pts[save1]};
-    var endPoint = {"x": pts2[save2-1], "y": pts2[save2]};
-  
-    return [beginPoint, endPoint];
+    return [
+      { x: n[d - 1], y: n[d] },
+      { x: o[g - 1], y: o[g] },
+    ];
   }
-  
-  function getVertexLineIntersectionPoint(x1, y1, x2, y2, r, cx, cy) {
-    var baX = x2 - x1; //pointB.x - pointA.x;
-    var baY = y2 - y1; //pointB.y - pointA.y;
-    var caX = cx - x1; //center.x - pointA.x;
-    var caY = cy - y1; //center.y - pointA.y;
-
-    var a = baX * baX + baY * baY;
-    var bBy2 = baX * caX + baY * caY;
-    var c = caX * caX + caY * caY - r * r;
-
-    var pBy2 = bBy2 / a;
-    var q = c / a;
-    
-    var disc = pBy2 * pBy2 - q;
-    var tmpSqrt = Math.sqrt(disc);
-    var abScalingFactor1 = -pBy2 + tmpSqrt;
-    var abScalingFactor2 = -pBy2 - tmpSqrt;
-
-    var r_x1 = x1 - baX * abScalingFactor1;
-    var r_y1 = y1 - baY * abScalingFactor1
-    //Point p1 = new Point(pointA.x - baX * abScalingFactor1, pointA.y
-    //      - baY * abScalingFactor1);
-    var r_x2 = x1 - baX * abScalingFactor2;
-    var r_y2 = y1 - baY * abScalingFactor2
-
-    //Point p2 = new Point(pointA.x - baX * abScalingFactor2, pointA.y
-    //       - baY * abScalingFactor2);
-    var res = new Array();
-    res[0] = r_x1; 
-    res[1] = r_y1;
-    res[2] = r_x2;
-    res[3] = r_y2 ;
-    return res;
+  function w(t, e, r, a, i, h, n) {
+    var o = r - t,
+      s = a - e,
+      d = h - t,
+      g = n - e,
+      p = o * o + s * s,
+      l = (o * d + s * g) / p,
+      f = l * l - (d * d + g * g - i * i) / p,
+      u = Math.sqrt(f),
+      c = -l + u,
+      w = -l - u,
+      E = t - o * c,
+      k = e - s * c,
+      x = t - o * w,
+      m = e - s * w,
+      v = new Array();
+    return (v[0] = E), (v[1] = k), (v[2] = x), (v[3] = m), v;
   }
-
-  function draw(dur){
-    if(dur == null || isNaN(dur)) dur = defaultAnimationDuration;
-    if(dur <= 0) dur = 1;
-
-    line.attr("class", attributeList["path"]["class"]);
-
-    line.transition()
-        .duration(dur)
-        .attr("d", attributeList["path"]["d"])
-        .attr("stroke", attributeList["path"]["stroke"])
-        .attr("stroke-width", attributeList["path"]["stroke-width"])
-        .style("marker-start", function(){
-          if(attributeList["path"]["d"] == initCommand) return null;
-          if(attributeList["path"]["class"] == "bde") return "url(#backwardArrow)";
-          return null;
+  function E(t) {
+    (null == t || isNaN(t)) && (t = g),
+      t <= 0 && (t = 1),
+      h.attr("class", u.path.class),
+      h
+        .transition()
+        .duration(t)
+        .attr("d", u.path.d)
+        .attr("stroke", u.path.stroke)
+        .attr("stroke-width", u.path["stroke-width"])
+        .style("marker-start", function () {
+          return u.path.d == f
+            ? null
+            : "bde" == u.path.class
+            ? "url(#backwardArrow)"
+            : null;
         })
-        .style("marker-end", function(){
-          if(attributeList["path"]["d"] == initCommand) return null;
-          if(attributeList["path"]["class"] == "de" || attributeList["path"]["class"] == "bde") return "url(#arrow)";
-          return null;
+        .style("marker-end", function () {
+          return u.path.d == f
+            ? null
+            : "de" == u.path.class || "bde" == u.path.class
+            ? "url(#arrow)"
+            : null;
+        }),
+      n
+        .transition()
+        .duration(t)
+        .attr("fill", u.weight.fill)
+        .attr("font-family", u.weight["font-family"])
+        .attr("font-size", u.weight["font-size"])
+        .attr("font-weight", u.weight["font-weight"])
+        .attr("text-anchor", u.weight["text-anchor"])
+        .attr("text-decoration", "underline"),
+      s
+        .transition()
+        .duration(t)
+        .text(function () {
+          return u.weight.text;
         });
-
-    weightText.transition()
-              .duration(dur)
-              .attr("fill", attributeList["weight"]["fill"])
-              .attr("font-family", attributeList["weight"]["font-family"])
-              .attr("font-size", attributeList["weight"]["font-size"])
-              .attr("font-weight", attributeList["weight"]["font-weight"])
-              .attr("text-anchor", attributeList["weight"]["text-anchor"])
-              .attr("text-decoration", "underline");
-              
-    weightTextSpan.transition()
-                  .duration(dur)
-                  .text(function(){
-                    return attributeList["weight"]["text"];
-                  });
   }
-
-  function updatePath(){
-    lineCommand = edgeGenerator(calculatePath());
-    initCommand = edgeGenerator([calculatePath()[0],calculatePath()[0]]);
+  function k() {
+    (l = p(c())), (f = p([c()[0], c()[0]]));
   }
-}
+  k(),
+    (function () {
+      switch (
+        ((u.path.id = "e" + r),
+        (u.path.d = f),
+        (u.path.stroke = graphEdgeProperties.path.default.stroke),
+        (u.path["stroke-width"] =
+          graphEdgeProperties.path.default["stroke-width"]),
+        a)
+      ) {
+        case EDGE_TYPE_UDE:
+          u.path.class = "ude";
+          break;
+        case EDGE_TYPE_DE:
+          u.path.class = "de";
+          break;
+        case EDGE_TYPE_BDE:
+          u.path.class = "bde";
+      }
+      (u.weight.id = "ew" + r),
+        (u.weight.startOffset = graphEdgeProperties.weight.default.startOffset),
+        (u.weight.dy = graphEdgeProperties.weight.default.dy),
+        (u.weight.fill = graphEdgeProperties.weight.default.fill),
+        (u.weight["font-family"] =
+          graphEdgeProperties.weight.default["font-family"]),
+        (u.weight["font-size"] = 0),
+        (u.weight["font-weight"] =
+          graphEdgeProperties.weight.default["font-weight"]),
+        (u.weight["text-anchor"] =
+          graphEdgeProperties.weight.default["text-anchor"]),
+        (u.weight.text = i),
+        (h = edgeSvg.append("path"))
+          .attr("id", u.path.id)
+          .attr("class", u.path.class);
+      try {
+        "MNaN,NaNLNaN,NaN" != u.path.d &&
+          h
+            .attr("d", u.path.d)
+            .attr("stroke", u.path.stroke)
+            .attr("stroke-width", u.path["stroke-width"]);
+      } catch (t) {}
+      (n = edgeWeightSvg.append("text")).attr("id", u.weight.id),
+        n
+          .attr("fill", u.weight.fill)
+          .attr("font-family", u.weight["font-family"])
+          .attr("font-size", u.weight["font-size"])
+          .attr("font-weight", u.weight["font-weight"])
+          .attr("text-anchor", u.weight["text-anchor"]),
+        (o = n
+          .append("textPath")
+          .attr("xlink:href", function () {
+            return "#" + u.path.id;
+          })
+          .attr("startOffset", u.weight.startOffset)),
+        (s = o
+          .append("tspan")
+          .attr("dy", u.weight.dy)
+          .text(function () {
+            return u.weight.text;
+          }));
+    })(),
+    (this.redraw = function (t) {
+      E(t);
+    }),
+    (this.animateHighlighted = function (t) {
+      (null == t || isNaN(t)) && (t = g),
+        t <= 0 && (t = 1),
+        edgeSvg
+          .append("path")
+          .attr("id", "tempEdge" + h.attr("id"))
+          .attr("stroke", graphEdgeProperties.animateHighlightedPath.stroke)
+          .attr(
+            "stroke-width",
+            graphEdgeProperties.animateHighlightedPath["stroke-width"]
+          )
+          .transition()
+          .duration(t)
+          .each("start", function () {
+            edgeSvg.select("#tempEdge" + h.attr("id")).attr("d", f);
+          })
+          .attr("d", l)
+          .each("end", function () {
+            h
+              .attr("stroke", graphEdgeProperties.path.highlighted.stroke)
+              .attr("stroke-width", graphEdgeProperties.path["stroke-width"]),
+              edgeSvg.select("#tempEdge" + h.attr("id")).remove(),
+              E(0);
+          });
+    }),
+    (this.showEdge = function () {
+      (u.path.d = l),
+        (u.path["stroke-width"] = graphEdgeProperties.path["stroke-width"]);
+    }),
+    (this.hideEdge = function () {
+      u.path.d = f;
+    }),
+    (this.showWeight = function () {
+      u.weight["font-size"] = graphEdgeProperties.weight["font-size"];
+    }),
+    (this.hideWeight = function () {
+      u.weight["font-size"] = 0;
+    }),
+    (this.stateEdge = function (t) {
+      var e;
+      for (e in graphEdgeProperties.path[t])
+        u.path[e] = graphEdgeProperties.path[t][e];
+      for (e in graphEdgeProperties.weight[t])
+        u.weight[e] = graphEdgeProperties.weight[t][e];
+    }),
+    (this.removeEdge = function () {
+      t.removeEdge(d), e.removeEdge(d), h.remove(), n.remove();
+    }),
+    (this.refreshPath = function () {
+      var t = f;
+      k(), u.path.d == t ? (u.path.d = f) : (u.path.d = l);
+    }),
+    (this.changeVertexA = function (e) {
+      var r = !1;
+      u.path.d == l && (r = !0),
+        t.removeEdge(d),
+        (t = e),
+        k(),
+        (l = p(c())),
+        (f = p([c()[0]])),
+        (u.path.d = f),
+        t.addEdge(d),
+        r && (u.path.d = l);
+    }),
+    (this.changeVertexB = function (t) {
+      var r = !1;
+      u.path.d == l && (r = !0),
+        e.removeEdge(d),
+        (e = t),
+        k(),
+        (l = p(c())),
+        (f = p([c()[0]])),
+        (u.path.d = f),
+        e.addEdge(d),
+        r && (u.path.d = l);
+    }),
+    (this.changeType = function (t) {
+      switch ((a = t)) {
+        case EDGE_TYPE_UDE:
+          u.path.class = "ude";
+          break;
+        case EDGE_TYPE_DE:
+          u.path.class = "de";
+          break;
+        case EDGE_TYPE_BDE:
+          u.path.class = "bde";
+      }
+    }),
+    (this.changeWeight = function (t) {
+      (i = t), (u.weight.text = i);
+    }),
+    (this.getVertex = function () {
+      return [t, e];
+    }),
+    (this.getAttributes = function () {
+      return deepCopy(u.path);
+    }),
+    (this.getType = function () {
+      return a;
+    });
+};
