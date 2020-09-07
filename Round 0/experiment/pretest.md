@@ -2,13 +2,13 @@
 #### Please attempt the following questions
 
 1) What is the time complexity to count the number of elements in the linked list?<br>
-<b>a) O(1)<br></b>
+a) O(1)<br>
 b) O(n)<br>
 c) O(logn)<br>
 d)  O(n2)<br>
 
 2) What is the space complexity for deleting a linked list?<br>
-a) O(1)<br></b>
+a) O(1)<br>
 b) O(n)<br>
 c) O(logn)<br>
 d) Either O(1) or O(n)<br>
