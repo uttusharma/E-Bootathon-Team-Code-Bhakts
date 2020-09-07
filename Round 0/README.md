@@ -3,9 +3,9 @@
 
 <br>
 
-<b>Discipline | <b>Engineering
+<b>Discipline | <b> B.tech Information Technology
 :--|:--|
-<b> Lab | <b> Computer Science
+<b> Lab | <b> Data Structure Lab
 <b> Experiment|     <b> 43. Implementation of stack using linked list
 
 <h5> About the Lab (Objective) : </h5>
@@ -54,13 +54,13 @@ Dr. APJ Abdul Kalam University, Lucknow
 :--|:--|
 <b> Institute | <b> KIET Group of Institutions,Ghaziabad
 <b> Email id|     <b> sangeeta.arora@kiet.edu
-<b> Department | Name of the department
+<b> Department | Department of Computer Applications
 
 #### Contributors List
 
 SrNo | Name | Faculty or Student | Department| Institute | Email id
 :--|:--|:--|:--|:--|:--|
-1 | Dr. Bindu Rani | Faculty |  Information Technology | Inderprastha Engineering College, Ghaziabad | bindu.rani@ipec.org.in
+1 | Ms. Bindu Rani | Faculty |  Information Technology | Inderprastha Engineering College, Ghaziabad | bindu.rani@ipec.org.in
 2 | Utkarsh Sharma | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |utkarshstudent1@gmail.com
 3 | Shubham Bisht | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |shubh.manu44@gmail.com
 4 | Nishant Mishra| Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |nishantmishra9910@gmail.com
