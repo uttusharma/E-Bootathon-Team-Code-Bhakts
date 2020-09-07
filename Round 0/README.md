@@ -61,4 +61,4 @@ SrNo | Name | Faculty or Student | Department| Institute | Email id
 5 | Yatin Singhania | Student |  Information Technology | Inderprastha Engineering College, Ghaziabad |singhaniayatin27@gmail.com
 
 <br>
-for more details on Rounds visit : <b> [HERE](http://vlabs.iitb.ac.in/gitlab/Community-Docs/New-Lab-development/List-of-Rounds/blob/master/README.md) </b>
+
