@@ -26,11 +26,11 @@ The major operations we perform on stack are :
 
 <h5> Target Audience : </h5>
 
-Type here: the target audience
+B.Tech CSE /IT , MCA students
 
 <h5> Course Alignment : </h5>
 
-B.Tech CSE /IT , MCA students
+The course is aligned to give students, an understanding by visualizing of how stack is implemented using linked list.
 
 <h5> Universities Mapped : </h5>
 
@@ -39,7 +39,7 @@ Dr. APJ Abdul Kalam University, Lucknow
 <b>Name of Developer | <b> Bindu Rani
 :--|:--|
 <b> Institute | <b> Inderprastha Engineering College
-<b> Email id|     <b> registrar@ipec.org.in
+<b> Email id|     <b> abc@example.com
 <b> Department |  Information Technology
   
 #### Mentor Details
@@ -47,7 +47,7 @@ Dr. APJ Abdul Kalam University, Lucknow
 <b>Mentored by | <b> (of professor only (no prefix Prof/Mr/MRS) - - - - - -
 :--|:--|
 <b> Institute | <b> Inderprastha Engineering College
-<b> Email id|     <b> abc@example.com
+<b> Email id|     <b> registrar@ipec.org.in
 <b> Department | Name of the department
 
 #### Contributors List
