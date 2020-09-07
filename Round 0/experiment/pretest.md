@@ -13,11 +13,11 @@ b) O(n)<br>
 c) O(logn)<br>
 d) Either O(1) or O(n)<br>
 
-3) If two waves with amplitude (y1) and (y2) travelling in the same medium reach at a point in the medium, then the resultant displacement at that point in the medium, will be given by __________ .<br>
-a) y1 -y2<br>
-<b>b) y1 + y2<br></b>
-c) y1 / y2<br>
-d) y1 * y2<br>
+3)  Which of these is not an application of linked list?<br>
+a) To implement file systems<br>
+<b>b)For separate chaining in hash-tables<br></b>
+c) To implement non-binary trees<br>
+d) Random Access of elements<br>
 
 4) The condition for destructive interference is: the path difference should be equal to __________. <br>
 <b>a) Odd integral multiple of wavelength<br></b>
