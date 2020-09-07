@@ -1,1 +1,1 @@
-## Implementation of stacks using arrays
+## Implementation of stack using linked list
