@@ -47,7 +47,7 @@ Dr. APJ Abdul Kalam University, Lucknow
 <b>Mentored by | <b> (of professor only (no prefix Prof/Mr/MRS) - - - - - -
 :--|:--|
 <b> Institute | <b> Inderprastha Engineering College
-<b> Email id|     <b> abc@example.com
+<b> Email id|     <b> registrar@ipec.org.in
 <b> Department | Name of the department
 
 #### Contributors List
