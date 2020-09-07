@@ -18,7 +18,7 @@ In this lab the course is designed to develop skills to design and analyze simpl
 
 - The order in which insertions and deletions are allowed is called LIFO (Last In First Out) or FILO (First In Last Out) i.e. the element that is inserted in the last is the first to come out or the element that is inserted first is the last to come out.
 
-- There are two ways of implementing stacks, Using Arrays or Using Linked Lists
+There are two ways of implementing stacks, Using Arrays or Using Linked Lists
 
 - Stacks can be easily implemented using a linked list. Stack is a data structure to which a data can be added using the push() method and data can be removed from it using the pop() method. With Linked list, the push operation can be replaced by the addAtFront() method of linked list and pop operation can be replaced by a function which deletes the front node of the linked list.
 
