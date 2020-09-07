@@ -8,8 +8,8 @@ html {
 #mode-menu {
   z-index: 1001;
   float: right;
-  background: black;
-  font-size: 14px;
+
+  font-size: 25px;
   width: 160px;
   position: relative;
 }
@@ -41,7 +41,7 @@ html {
   left: 0px;
   height: 100%;
   width: 40px;
-  background: black;
+  background: #2868ce;
   z-index: -1;
 }
 
@@ -51,7 +51,7 @@ html {
   right: 0px;
   height: 100%;
   width: 40px;
-  background: black;
+  background: #2868ce;
   z-index: -2;
 }
 

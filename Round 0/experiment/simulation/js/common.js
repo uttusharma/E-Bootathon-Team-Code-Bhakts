@@ -1,14 +1,14 @@
 //surprise colour!
 //Referenced to in  home.js and viz.js also
 var colourArray = [
-  "#52bc69",
-  "#ed5a7d",
-  "#2ebbd1",
-  "#d9513c",
   "#fec515",
-  "#4b65ba",
-  "#ff8a27",
-  "#a7d41e",
+  "#fec515",
+  "#fec515",
+  "#fec515",
+  "#fec515",
+  "#fec515",
+  "#fec515",
+  "#fec515",
 ];
 
 function getColours() {
