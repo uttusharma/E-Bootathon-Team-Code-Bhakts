@@ -25,5 +25,5 @@ Peek() - Gives the element on the top of the stack without modifying the content
 isEmpty() - Returns true if the stack is empty , else returns false
 Implementation of stacks
 There are two ways of implementing stacks :
-Using Arrays
-Using Linked Lists
+> Using Arrays <br>
+> Using Linked Lists <br>
