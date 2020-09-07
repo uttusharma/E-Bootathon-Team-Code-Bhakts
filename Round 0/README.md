@@ -23,6 +23,9 @@ The major operations we perform on stack are :
 - Peek() - Gives the element on the top of the stack without modifying the contents of the stack.
 - isEmpty() - Returns true if the stack is empty , else returns false
 - Implementation of stacks
+- Stacks can be easily implemented using a linked list. Stack is a data structure to which a data can be added using the push() method and data can be removed from it using the pop() method. With Linked list, the push operation can be replaced by the addAtFront() method of linked list and pop operation can be replaced by a function which deletes the front node of the linked list.
+
+In this way our Linked list will virtually become a Stack with push() and pop() methods.
 
 <h5> Target Audience : </h5>
 
