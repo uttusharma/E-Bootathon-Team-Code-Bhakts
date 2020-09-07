@@ -18,12 +18,12 @@ A Stack can be visualised as plates kept one over the other in a college canteen
 The stack can be better understood using the following diagram.
 Note : A stack is said to be in Overflow state when it is completely full and is said to be in Underflow state if the stack is completely empty.
 
-The major operations we perform on stack are :
-Push() - Inserts an element to the top of the stack. It generates a Stack overflow error if there is no memory space available for inserting the element.
-Pop() - Removes an element from the top of the stack. It generates a Stack underflow error if there are no elements in the stack to be removed.
-Peek() - Gives the element on the top of the stack without modifying the contents of the stack.
-isEmpty() - Returns true if the stack is empty , else returns false
-Implementation of stacks
-There are two ways of implementing stacks :
-> Using Arrays <br>
-> Using Linked Lists <br>
+# The major operations we perform on stack are :
+- Push() - Inserts an element to the top of the stack. It generates a Stack overflow error if there is no memory space available for inserting the element.
+- Pop() - Removes an element from the top of the stack. It generates a Stack underflow error if there are no elements in the stack to be removed.
+- Peek() - Gives the element on the top of the stack without modifying the contents of the stack.
+- isEmpty() - Returns true if the stack is empty , else returns false
+- Implementation of stacks
+# There are two ways of implementing stacks :
+- Using Arrays <br>
+- Using Linked Lists <br>
