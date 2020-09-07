@@ -28,5 +28,5 @@ d) The size of array has to be pre-decided, linked lists can change their size a
 5) A linear collection of data elements where the linear node is given by means of pointer is called?<br>
 a) Linked list<br>
 b) Node list<br>
-c) Primitive lis<br>
+c) Primitive list<br>
 <b>d) None<br></b>
