@@ -6,7 +6,7 @@ Remove this line before submitting : To Refer a filled sample of this template v
 <b>Discipline | <b>Engineering
 :--|:--|
 <b> Lab | <b> Computer Science
-<b> Experiment|     <b> 40. Implementation of Stack using arrays
+<b> Experiment|     <b> 43. Implementation of stack using linked list
 
 <h5> About the Lab (Objective) : </h5>
 
