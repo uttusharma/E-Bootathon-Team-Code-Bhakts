@@ -10,11 +10,19 @@ Remove this line before submitting : To Refer a filled sample of this template v
 
 <h5> About the Lab (Objective) : </h5>
 
-Type here: berif description of the lab
+Stack is a linear data structure in which we restrict the operations over it in a particular order.
+
+The order in which insertions and deletions are allowed is called LIFO (Last In First Out) or FILO (First In Last Out) i.e. the element that is inserted in the last is the first to come out or the element that is inserted first is the last to come out.
+
 
 <h5> About the Experiment : </h5>
 
-Type here: berif description of this experiment
+The major operations we perform on stack are :
+- Push() - Inserts an element to the top of the stack. It generates a Stack overflow error if there is no memory space available for inserting the element.
+- Pop() - Removes an element from the top of the stack. It generates a Stack underflow error if there are no elements in the stack to be removed.
+- Peek() - Gives the element on the top of the stack without modifying the contents of the stack.
+- isEmpty() - Returns true if the stack is empty , else returns false
+- Implementation of stacks
 
 <h5> Target Audience : </h5>
 
