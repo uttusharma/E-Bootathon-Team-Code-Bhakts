@@ -1,17 +1,17 @@
 ## <b> Pre-test
 #### Please attempt the following questions
 
-1) Interference occurs due to _______ of the light.<br>
-<b>a) Wave nature<br></b>
-b) particle nature<br>
-c) both a and b<br>
-d) none of these<br>
+1) What is the time complexity to count the number of elements in the linked list?<br>
+<b>a) O(1)<br></b>
+b) O(n)<br>
+c) O(logn)<br>
+d)  O(n2)<br>
 
-2) Superposition of crest over crest results in __________ .<br>
-a) Destructive interference<br>
-<b> b) Constructive interference<br></b>
-c) Diffraction<br>
-d) Polarization<br>
+2) What is the space complexity for deleting a linked list?<br>
+a) O(1)<br></b>
+b) O(n)<br>
+c) O(logn)<br>
+d) Either O(1) or O(n)<br>
 
 3) If two waves with amplitude (y1) and (y2) travelling in the same medium reach at a point in the medium, then the resultant displacement at that point in the medium, will be given by __________ .<br>
 a) y1 -y2<br>
