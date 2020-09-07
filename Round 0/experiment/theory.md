@@ -1,8 +1,13 @@
 ### INTRODUCTION<br>
-#### In 1717, Sir Isaac Newton studied the rings pattern generated due to interference of light.
-#### These rings are known as Newton’s rings. They arise from the interference of light. The phenomenon of interference of light waves is obtained from monochromatic and coherent rays i.e. rays of same frequency and constant phase difference.
-#### Newton's ring pattern is a result of interference between the partially reflected and partially transmitted rays from the lower curved surface of plano-convex lens and upper surface of the plane glass plate. When viewed with a monochromatic source, it appears as a series of concentric, alternate bright and dark rings centred at the point of contact between the two surfaces. These rings appear in the field of view of telescope.
-#### The wavelength of the monochromatic light and the refractive index of a given transparent liquid medium present in the wedge-shaped film can be calculated by studying the ring pattern.
+Stack is a linear data structure in which we restrict the operations over it in a particular order.
+
+The order in which insertions and deletions are allowed is called LIFO (Last In First Out) or FILO (First In Last Out) i.e. the element that is inserted in the last is the first to come out or the element that is inserted first is the last to come out.
+
+Both insertions and deletions to the stack are done only on one end called as top of the stack.
+
+A Stack can be visualised as plates kept one over the other in a college canteen. Adding a plate or removing a plate happens only on the top. The plate on the top is the first to be be removed and the plate that is put first is the last to be removed.
+
+The stack can be better understood using the following diagram.
 <br>
 
 ### CONCEPT<br>
