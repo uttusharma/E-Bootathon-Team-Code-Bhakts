@@ -90,28 +90,57 @@
 
   const myQuestions = [
     {
-      question: "This is question 1?",  ///// Write the question inside double quotes
+      question: "What is the time complexity to count the number of elements in the linked list?",  ///// Write the question inside double quotes
       answers: {
-        a: "Option 1",                  ///// Write the option 1 inside double quotes
-        b: "Option 2",                  ///// Write the option 2 inside double quotes
-        c: "Option 3",                  ///// Write the option 3 inside double quotes
-        d: "Option 4"                   ///// Write the option 4 inside double quotes
+        a: "O(1)",                  ///// Write the option 1 inside double quotes
+        b: "O(n)",                  ///// Write the option 2 inside double quotes
+        c: "O(logn)",                  ///// Write the option 3 inside double quotes
+        d: "O(n2)"                   ///// Write the option 4 inside double quotes
       },
-      correctAnswer: "a"                ///// Write the correct option inside double quotes
+      correctAnswer: "d"                ///// Write the correct option inside double quotes
     },
 
     {
-     question: "This is question 2?",  ///// Write the question inside double quotes
+     question: "What is the space complexity for deleting a linked list?",  ///// Write the question inside double quotes
       answers: {
-        a: "Option 1",                  ///// Write the option 1 inside double quotes
-        b: "Option 2",                  ///// Write the option 2 inside double quotes
-        c: "Option 3",                  ///// Write the option 3 inside double quotes
-        d: "Option 4"                   ///// Write the option 4 inside double quotes
+        a: "O(1)",                  ///// Write the option 1 inside double quotes
+        b: "O(n)",                  ///// Write the option 2 inside double quotes
+        c: "O(logn)",                  ///// Write the option 3 inside double quotes
+        d: "Either O(1) or O(n)"                   ///// Write the option 4 inside double quotes
       },
-      correctAnswer: "b"                ///// Write the correct option inside double quotes
+      correctAnswer: "a"                ///// Write the correct option inside double quotes
     },                                  ///// To add more questions, copy the section below 
     									                  ///// this line
-
+    {
+     question: "Which of these is not an application of linked list?",  ///// Write the question inside double quotes
+      answers: {
+        a: "To implement file systems",                  ///// Write the option 1 inside double quotes
+        b: "For separate chaining in hash-tables",                  ///// Write the option 2 inside double quotes
+        c: "To implement non-binary trees",                  ///// Write the option 3 inside double quotes
+        d: "Random Access of elements"                   ///// Write the option 4 inside double quotes
+      },
+      correctAnswer: "d"                ///// Write the correct option inside double quotes
+    },  
+    {
+     question: "Which of these is not an application of linked list?",  ///// Write the question inside double quotes
+      answers: {
+        a: "Arrays have better cache locality that can make them better in terms of performance.",                  ///// Write the option 1 inside double quotes
+        b: "It is easy to insert and delete elements in Linked List.",                  ///// Write the option 2 inside double quotes
+        c: "Random access is not allowed in a typical implementation of Linked Lists.",                  ///// Write the option 3 inside double quotes
+        d: "The size of array has to be pre-decided, linked lists can change their size any time."                   ///// Write the option 4 inside double quotes
+      },
+      correctAnswer: "b"                ///// Write the correct option inside double quotes
+    }, 
+    {
+     question: "A linear collection of data elements where the linear node is given by means of pointer is called?",  ///// Write the question inside double quotes
+      answers: {
+        a: "Linked list",                  ///// Write the option 1 inside double quotes
+        b: "Node list",                  ///// Write the option 2 inside double quotes
+        c: "Primitive list",                  ///// Write the option 3 inside double quotes
+        d: "None"                   ///// Write the option 4 inside double quotes
+      },
+      correctAnswer: "b"                ///// Write the correct option inside double quotes
+    }, 
 
     /* To add more MCQ's, copy the below section, starting from open curly braces ( { )
         till closing curly braces comma ( }, )

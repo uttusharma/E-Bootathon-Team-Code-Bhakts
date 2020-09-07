@@ -1,32 +1,33 @@
 ## Post test
 <br>
-Q 1. What will happen, if the glass plate is replaced with plane mirror?<br>
-<b>a. There will be no interference fringe<br></b>
-b. There will be interference fringe<br>
-c. colored fringes will be observed<br>
-d. None of the options<br><br>
+Q 1.  In linked list each node contain minimum of two fields. One field is data field to store the data second field is?
+<br>
+<b>a. Pointer to character<br></b>
+b. Pointer to integer<br>
+c. Pointer to node<br>
+d. Node<br><br>
 
-Q 2. What will happen, if sodium light is replaced with white light?<br>
-a. There will be no interference fringe<br>
-b. There will be interference fringe<br>
-<b>c. colored fringes will be observed<br></b>
-d. No change in pattern is visible<br>
+Q 2. What would be the asymptotic time complexity to add a node at the end of singly linked list, if the pointer is initially pointing to the head of the list?<br>
+a. O(1)<br>
+b. O(n)<br>
+<b>c. θ (n)<br></b>
+d. θ (1)<br>
 
-Q 3. What will appear, if in place of lens, a plane glass making some angle with the glass stripe  is used?<br>
-<b>a. Alternate dark and bright fringes in shape of a straight line.<br></b>
-b. triangular interference pattern<br>
-c. colored fringes will be observed<br>
-d. No change in pattern is visible<br>
+Q 3. What kind of linked list is best to answer question like “What is the item at position n?"
+<br>
+<b>a. Singly linked list<br></b>
+b. Doubly linked list<br>
+c. Circular linked list<br>
+d. Array implementation of linked list<br>
 
-Q 4. Colours observed in thin film are because of ________________<br>
-a. Diffraction<br>
-<b>b. Interference<br></b>
-c. Polarization<br>
-d. None of the options<br>
+Q 4. Linked lists are not suitable to for the implementation of?<br>
+a. Insertion sort<br>
+<b>b. Radix sort<br></b>
+c. Polynomial manipulation<br>
+d. Binary search<br>
 
-Q 5.  In Newton’s rings experiment, rings are formed when the light is ________________ by
-lower surface of the lens and upper surface of the glass plate, interfere.<br>
-a. Reflected<br>
-<b>b. Refracted<br></b>
-c. Transmitted<br>
-d. None<br></b>
+Q 5.  In worst case, the number of comparison need to search a singly linked list of length n for a given element is<br>
+a. log n<br>
+<b>b. n/2<br></b>
+c. log2n-1<br>
+d. n<br></b>

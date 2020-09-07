@@ -1,32 +1,32 @@
 ## <b> Pre-test
 #### Please attempt the following questions
 
-1) Interference occurs due to _______ of the light.<br>
-<b>a) Wave nature<br></b>
-b) particle nature<br>
-c) both a and b<br>
-d) none of these<br>
+1) What is the time complexity to count the number of elements in the linked list?<br>
+a) O(1)<br>
+b) O(n)<br>
+c) O(logn)<br>
+d)  O(n2)<br>
 
-2) Superposition of crest over crest results in __________ .<br>
-a) Destructive interference<br>
-<b> b) Constructive interference<br></b>
-c) Diffraction<br>
-d) Polarization<br>
+2) What is the space complexity for deleting a linked list?<br>
+a) O(1)<br>
+b) O(n)<br>
+c) O(logn)<br>
+d) Either O(1) or O(n)<br>
 
-3) If two waves with amplitude (y1) and (y2) travelling in the same medium reach at a point in the medium, then the resultant displacement at that point in the medium, will be given by __________ .<br>
-a) y1 -y2<br>
-<b>b) y1 + y2<br></b>
-c) y1 / y2<br>
-d) y1 * y2<br>
+3)  Which of these is not an application of linked list?<br>
+a) To implement file systems<br>
+<b>b) For separate chaining in hash-tables<br></b>
+c) To implement non-binary trees<br>
+d) Random Access of elements<br>
 
-4) The condition for destructive interference is: the path difference should be equal to __________. <br>
-<b>a) Odd integral multiple of wavelength<br></b>
-b) Integral multiple of wavelength<br>
-c) Odd integral multiple of half wavelength<br>
-d) Integral multiple of half wavelength<br>
+4) Which of the following points is/are true about Linked List data structure when it is compared with array. <br>
+<b>a) Arrays have better cache locality that can make them better in terms of performance.<br></b>
+b) It is easy to insert and delete elements in Linked List.<br>
+c)Random access is not allowed in a typical implementation of Linked Lists.<br>
+d) The size of array has to be pre-decided, linked lists can change their size any time.<br>
 
-5) In Newton's ring experiment, the diameter of the dark rings is proportional to __________ .<br>
-a) Odd natural numbers<br>
-b) Even natural numbers<br>
-c) Complex numbers<br>
-<b>d) square root of natural numbers<br></b>
+5) A linear collection of data elements where the linear node is given by means of pointer is called?<br>
+a) Linked list<br>
+b) Node list<br>
+c) Primitive list<br>
+<b>d) None<br></b>
