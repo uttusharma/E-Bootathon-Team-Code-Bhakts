@@ -1,1 +1,1 @@
-### Lab Name
+### Computer Science
