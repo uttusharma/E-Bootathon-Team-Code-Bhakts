@@ -38,16 +38,16 @@ Dr. APJ Abdul Kalam University, Lucknow
 
 <b>Name of Developer | <b> Bindu Rani
 :--|:--|
-<b> Institute | <b> Inderprastha Engineering College
-<b> Email id|     <b> abc@example.com
+<b> Institute | <b> Inderprastha Engineering College, Ghaziabad
+<b> Email id|     <b> Bindu.rani@ipec.org.in
 <b> Department |  Information Technology
   
 #### Mentor Details
 
-<b>Mentored by | <b> (of professor only (no prefix Prof/Mr/MRS) - - - - - -
+<b>Mentored by | <b> Dr. Sangeeta Arora
 :--|:--|
-<b> Institute | <b> Inderprastha Engineering College
-<b> Email id|     <b> registrar@ipec.org.in
+<b> Institute | <b> KIET Group of Institutions,Ghaziabad
+<b> Email id|     <b> sangeeta.arora@kiet.edu
 <b> Department | Name of the department
 
 #### Contributors List
