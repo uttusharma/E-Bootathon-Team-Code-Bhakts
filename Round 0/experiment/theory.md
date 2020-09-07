@@ -9,7 +9,7 @@ A Stack can be visualised as plates kept one over the other in a college canteen
 
 The stack can be better understood using the following diagram.
 <br>
-
+<img src="images/stack.jpg">
 # CONCEPT<br>
 Both insertions and deletions to the stack are done only on one end called as top of the stack.
 
