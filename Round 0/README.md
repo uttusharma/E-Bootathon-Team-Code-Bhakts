@@ -25,8 +25,10 @@ The major operations we perform on stack are :
 - Pop() - Removes an element from the top of the stack. It generates a Stack underflow error if there are no elements in the stack to be removed.
 - Peek() - Gives the element on the top of the stack without modifying the contents of the stack.
 - isEmpty() - Returns true if the stack is empty , else returns false
--There are two ways of implementing stacks :
+- There are two ways of implementing stacks :
+<br>
 a) Using Arrays
+<br>
 b) Using Linked Lists
 - Stacks can be easily implemented using a linked list. Stack is a data structure to which a data can be added using the push() method and data can be removed from it using the pop() method. With Linked list, the push operation can be replaced by the addAtFront() method of linked list and pop operation can be replaced by a function which deletes the front node of the linked list.
 
