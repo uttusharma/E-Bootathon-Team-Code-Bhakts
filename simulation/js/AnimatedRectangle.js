@@ -1,30 +1,30 @@
+// Copyright 2011 David Galles, University of San Francisco. All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without modification, are
+// permitted provided that the following conditions are met:
+//
+// 1. Redistributions of source code must retain the above copyright notice, this list of
+// conditions and the following disclaimer.
+//
+// 2. Redistributions in binary form must reproduce the above copyright notice, this list
+// of conditions and the following disclaimer in the documentation and/or other materials
+// provided with the distribution.
+//
+// THIS SOFTWARE IS PROVIDED BY <COPYRIGHT HOLDER> ``AS IS'' AND ANY EXPRESS OR IMPLIED
+// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+// FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+// ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+// The views and conclusions contained in the software and documentation are those of the
+// authors and should not be interpreted as representing official policies, either expressed
+// or implied, of the University of San Francisco
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Values for xJust / yJust:  "center", "left", "right", "top", "bottom"
 
 AnimatedRectangle = function(id, val, wth, hgt,  xJust, yJust, fillColor, edgeColor)
 {
@@ -70,7 +70,7 @@ AnimatedRectangle.prototype.left = function()
 	{
 		return this.x - this.w / 2.0;   
 	}
-	else
+	else // (this.xJustify == "right")
 	{
 		return this.x - this.w;   
 	}
@@ -87,7 +87,7 @@ AnimatedRectangle.prototype.centerX = function()
 	{
 		return this.x + this.w / 2.0;
 	}
-	else
+	else // (this.xJustify == "right")
 	{
 		return this.x - this.w / 2.0;
 	}
@@ -103,7 +103,7 @@ AnimatedRectangle.prototype.centerY = function()
 	{
 		return this.y + this.h / 2.0;
 	}
-	else
+	else // (this.xJustify == "bottom")
 	{
 		return this.y - this.w / 2.0;
 	}
@@ -120,7 +120,7 @@ AnimatedRectangle.prototype.top = function()
 	{
 		return this.y - this.h / 2.0;   
 	}
-	else
+	else //(this.xJustify == "bottom")
 	{
 		return this.y - this.h;   
 	}
@@ -136,7 +136,7 @@ AnimatedRectangle.prototype.bottom = function()
 	{
 		return this.y + this.h / 2.0;   
 	}
-	else
+	else //(this.xJustify == "bottom")
 	{
 		return this.y;   
 	}
@@ -153,7 +153,7 @@ AnimatedRectangle.prototype.right = function()
 	{
 		return this.x + this.w / 2.0;   
 	}
-	else
+	else // (this.xJustify == "right")
 	{
 		return this.x;   
 	}
@@ -188,7 +188,7 @@ AnimatedRectangle.prototype.getHeight = function()
 }
 
 
-
+// TODO:  Fix me!
 AnimatedRectangle.prototype.draw = function(context)
 {
 	if (!this.addedToScene)
@@ -291,13 +291,13 @@ AnimatedRectangle.prototype.draw = function(context)
 AnimatedRectangle.prototype.setText = function(newText, textIndex)
 {
 	this.label = newText;
-
+	// TODO:  setting text position?
 }
 
 
 AnimatedRectangle.prototype.createUndoDelete = function() 
 {
-
+	// TODO: Add color?
 	return new UndoDeleteRectangle(this.objectID, this.label, this.x, this.y, this.w, this.h, this.xJustify, this.yJustify, this.backgroundColor, this.foregroundColor, this.highlighted, this.layer);
 }
 

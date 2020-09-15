@@ -1,47 +1,47 @@
+// Copyright 2011 David Galles, University of San Francisco. All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without modification, are
+// permitted provided that the following conditions are met:
+//
+// 1. Redistributions of source code must retain the above copyright notice, this list of
+// conditions and the following disclaimer.
+//
+// 2. Redistributions in binary form must reproduce the above copyright notice, this list
+// of conditions and the following disclaimer in the documentation and/or other materials
+// provided with the distribution.
+//
+// THIS SOFTWARE IS PROVIDED BY <COPYRIGHT HOLDER> ``AS IS'' AND ANY EXPRESS OR IMPLIED
+// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+// FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+// ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+// The views and conclusions contained in the software and documentation are those of the
+// authors and should not be interpreted as representing official policies, either expressed
+// or implied, of the University of San Francisco
 
 
+// Object Manager
+//
+// Manage all of our animated objects.  Control any animated object should occur through
+// this interface (not language enforced, because enforcing such things in Javascript is 
+// problematic.)
+//
+// This class is only accessed through:
+//
+//  AnimationMain
+//  Undo objects (which are themselves controlled by AnimationMain
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// TODO: 
+//       1.  Add proper throws for all error conditions (perhaps guarded by
+//           an assert-like structure that can be turned off for production?)
+//       2.  Refactor this code so that it uses the same object syntax (with 
+//           prototypes) as te rest of the code.  (low priority)
 function ObjectManager()
 {
 	this.Nodes = [];
@@ -62,7 +62,7 @@ function ObjectManager()
 		if (this.framenum > 1000)
 			this.framenum = 0;
 		
-		this.ctx.clearRect(0,0,this.width,this.height);
+		this.ctx.clearRect(0,0,this.width,this.height); // clear canvas
 		this.statusReport.y = this.height - 15;
 		
 		var i;
@@ -332,7 +332,7 @@ function ObjectManager()
 	{
 		if (this.Nodes[nodeID] == null  || this.Nodes[nodeID] == undefined)
 		{
-		
+			// TODO:  Error here?
 			return;
 		}
 		this.Nodes[nodeID].setHighlight(val);
@@ -343,7 +343,7 @@ function ObjectManager()
 	{
 		if (this.Nodes[nodeID] == null  || this.Nodes[nodeID] == undefined)
 		{
-		
+			// TODO:  Error here?
 			return false;
 		}
 		return this.Nodes[nodeID].getHighlight();
@@ -354,7 +354,7 @@ function ObjectManager()
 	{
 		if (this.Nodes[nodeID] == null  || this.Nodes[nodeID] == undefined)
 		{
-		
+			// TODO:  Error here?
 			return false;
 		}
 		return this.Nodes[nodeID].getHighlightIndex();
@@ -364,7 +364,7 @@ function ObjectManager()
 	{
 		if (this.Nodes[nodeID] == null  || this.Nodes[nodeID] == undefined)
 		{
-		
+			// TODO:  Error here?
 			return;
 		}
 		this.Nodes[nodeID].setWidth(val);
@@ -374,7 +374,7 @@ function ObjectManager()
 	{
 		if (this.Nodes[nodeID] == null  || this.Nodes[nodeID] == undefined)
 		{
-		
+			// TODO:  Error here?
 			return;
 		}
 		this.Nodes[nodeID].setHeight(val);
@@ -385,7 +385,7 @@ function ObjectManager()
 	{
 		if (this.Nodes[nodeID] == null  || this.Nodes[nodeID] == undefined)
 		{
-		
+			// TODO:  Error here?
 			return -1;
 		}
 		return this.Nodes[nodeID].getHeight();
@@ -395,7 +395,7 @@ function ObjectManager()
 	{
 		if (this.Nodes[nodeID] == null  || this.Nodes[nodeID] == undefined)
 		{
-		
+			// TODO:  Error here?
 			return -1;
 		}
 		return this.Nodes[nodeID].getWidth();
@@ -453,7 +453,7 @@ function ObjectManager()
 				if (this.BackEdges[objectIDto][i] != null && this.BackEdges[objectIDto][i].Node1 == this.Nodes[objectIDfrom])
 				{
 					deleted = this.BackEdges[objectIDto][i];
-				
+					// Note:  Don't need to remove this child, did it above on the regular edge
 					this.BackEdges[objectIDto][i] = this.BackEdges[objectIDto][len - 1];
 					len -= 1;
 					this.BackEdges[objectIDto].pop();
@@ -560,7 +560,7 @@ function ObjectManager()
 	
 	this.getTextWidth = function(text)
 	{
-	
+		// TODO:  Need to make fonts more flexible, and less hardwired.
 		this.ctx.font = '10px sans-serif';
 		if (text==undefined)
 		{
@@ -653,12 +653,12 @@ function ObjectManager()
 		{
 			return this.Nodes[objectID].getNull();
 		}
-		return false; 
+		return false;  // TODO:  Error here?
 	}
 	
 	
 	
-	this.setEdgeColor = function(fromID, toID, color)
+	this.setEdgeColor = function(fromID, toID, color) // returns old color
 	{
 		var oldColor ="#000000";
 		if (this.Edges[fromID] != null &&
@@ -744,7 +744,7 @@ function ObjectManager()
 	}
 	
 	
-	this.setEdgeHighlight = function(fromID, toID, val)
+	this.setEdgeHighlight = function(fromID, toID, val) // returns old color
 	{
 		var oldHighlight = false;
 		if (this.Edges[fromID] != null &&
@@ -830,7 +830,7 @@ function ObjectManager()
 	{
 		if (this.Nodes[nodeID] == null || this.Nodes[nodeID] == undefined)
 		{
-		
+			// TODO:  Error here?
 			return;
 		}
 		if (newX == undefined || newY == undefined)

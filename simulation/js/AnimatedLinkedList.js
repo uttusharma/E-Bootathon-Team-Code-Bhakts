@@ -1,28 +1,28 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Copyright 2011 David Galles, University of San Francisco. All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without modification, are
+// permitted provided that the following conditions are met:
+//
+// 1. Redistributions of source code must retain the above copyright notice, this list of
+// conditions and the following disclaimer.
+//
+// 2. Redistributions in binary form must reproduce the above copyright notice, this list
+// of conditions and the following disclaimer in the documentation and/or other materials
+// provided with the distribution.
+//
+// THIS SOFTWARE IS PROVIDED BY <COPYRIGHT HOLDER> ``AS IS'' AND ANY EXPRESS OR IMPLIED
+// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+// FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+// ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+// The views and conclusions contained in the software and documentation are those of the
+// authors and should not be interpreted as representing official policies, either expressed
+// or implied, of the University of San Francisco
 
 function AnimatedLinkedList(id, val, wth, hgt, linkPer, verticalOrientation, linkPosEnd, numLab, fillColor, edgeColor)
 {
@@ -157,9 +157,9 @@ AnimatedLinkedList.prototype.bottom = function()
 }
 
 
-
-
-
+// TODO: Should we move this to the draw function, and save the
+//       space of the arrays?  Bit of a leftover from the Flash code,
+//       which did drawing differently
 AnimatedLinkedList.prototype.resetTextPosition = function()
 {
 	if (this.vertical)
@@ -167,7 +167,7 @@ AnimatedLinkedList.prototype.resetTextPosition = function()
 		this.labelPosX[0] = this.x;
 		
 		this.labelPosY[0] = this.y + this.h * (1-this.linkPercent)/2 *(1/this.numLabels - 1);				
-	
+		//				labelPosY[0] = -height * (1-linkPercent) / 2 + height*(1-linkPercent)/2*numLabels;
 		for (var i = 1; i < this.numLabels; i++)
 		{
 			this.labelPosY[i] = this.labelPosY[i-1] +  this.h*(1-this.linkPercent)/this.numLabels;
@@ -202,7 +202,7 @@ AnimatedLinkedList.prototype.getTailPointerAttachPos = function(fromX, fromY, an
 	{
 		return [this.x + this.w / 2.0, this.y];								
 	}
-	else
+	else // (!this.vertical && !this.linkPositionEnd)
 	{
 		return [this.x - this.w / 2.0, this.y];								
 	}
@@ -280,7 +280,7 @@ AnimatedLinkedList.prototype.draw = function(context)
 		startX = this.left();
 		for (i= 1; i < this.numLabels; i++)
 		{
-		
+			//TODO: this doesn't look right ...
 			startY = this.y + this.h*(1-this.linkPercent)*(i / this.numLabels - 1/2);
 			
 			context.beginPath();
@@ -352,7 +352,7 @@ AnimatedLinkedList.prototype.draw = function(context)
 		context.stroke();		
 		
 	}
-	else
+	else // (!vertical && !linkPositionEnd)
 	{
 		startX = this.left()  + this.w * this.linkPercent;
 		startY = this.top() ;
