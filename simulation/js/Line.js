@@ -1,32 +1,32 @@
-// Copyright 2011 David Galles, University of San Francisco. All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without modification, are
-// permitted provided that the following conditions are met:
-//
-// 1. Redistributions of source code must retain the above copyright notice, this list of
-// conditions and the following disclaimer.
-//
-// 2. Redistributions in binary form must reproduce the above copyright notice, this list
-// of conditions and the following disclaimer in the documentation and/or other materials
-// provided with the distribution.
-//
-// THIS SOFTWARE IS PROVIDED BY <COPYRIGHT HOLDER> ``AS IS'' AND ANY EXPRESS OR IMPLIED
-// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-// FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
-// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-// ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-// The views and conclusions contained in the software and documentation are those of the
-// authors and should not be interpreted as representing official policies, either expressed
-// or implied, of the University of San Francisco
 
 
-// This class is somewhat poorly named -- it handles links between vertices in graphs,
-//  pointers in linked lists, and so on. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 var LINE_maxHeightDiff = 5;
@@ -129,16 +129,16 @@ function Line(n1, n2, color, cv, d, weight, anchorIndex)
 		context.moveTo(fromPos[0], fromPos[1]);
 		context.quadraticCurveTo(controlX, controlY, toPos[0], toPos[1]);
 		context.stroke();
-		//context.closePath();
+	
 			
-		// Position of the edge label:  First, we will place it right along the
-		// middle of the curve (or the middle of the line, for curve == 0)
+	
+	
 		var labelPosX = 0.25* fromPos[0] + 0.5*controlX + 0.25*toPos[0]; 
 		var labelPosY =  0.25* fromPos[1] + 0.5*controlY + 0.25*toPos[1]; 
 			
-		// Next, we push the edge position label out just a little in the direction of
-		// the curve, so that the label doesn't intersect the cuve (as long as the label
-		// is only a few characters, that is)
+	
+	
+	
 		var midLen = Math.sqrt(deltaY*deltaY + deltaX*deltaX);
 		if (midLen != 0)
 		{

@@ -1,31 +1,31 @@
-// Copyright 2011 David Galles, University of San Francisco. All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without modification, are
-// permitted provided that the following conditions are met:
-//
-// 1. Redistributions of source code must retain the above copyright notice, this list of
-// conditions and the following disclaimer.
-//
-// 2. Redistributions in binary form must reproduce the above copyright notice, this list
-// of conditions and the following disclaimer in the documentation and/or other materials
-// provided with the distribution.
-//
-// THIS SOFTWARE IS PROVIDED BY <COPYRIGHT HOLDER> ``AS IS'' AND ANY EXPRESS OR IMPLIED
-// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-// FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
-// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-// ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-// The views and conclusions contained in the software and documentation are those of the
-// authors and should not be interpreted as representing official policies, either expressed
-// or implied, of the University of San Francisco
 
-// Global timer used for doing animation callbacks.
-//  TODO:  Make this an instance variable of Animation Manager.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var timer;
 var swapped = false;
 
@@ -52,7 +52,7 @@ function swapControlDiv()
 }
 
 
-// Utility funciton to read a cookie
+
 function getCookie(cookieName)
 {
 	var i, x, y;
@@ -69,7 +69,7 @@ function getCookie(cookieName)
 	}
 }
 
-// Utility funciton to write a cookie
+
 function setCookie(cookieName,value,expireDays)
 {
 	var exdate=new Date();
@@ -82,7 +82,7 @@ function setCookie(cookieName,value,expireDays)
 var ANIMATION_SPEED_DEFAULT = 75;
 
 
-// TODO:  Move these out of global space into animation manager?
+
 var objectManager;
 var animationManager;
 var canvas;
@@ -110,11 +110,11 @@ function returnSubmit(field, funct, maxsize, intOnly)
 	return function(event)
 	{       
 		var keyASCII = 0;
-		if(window.event) // IE
+		if(window.event)
 		{
 			keyASCII = event.keyCode
 		}
-		else if (event.which) // Netscape/Firefox/Opera
+		else if (event.which)
 		{
 			keyASCII = event.which
 		} 
@@ -186,8 +186,8 @@ function anumUndoUnavailable()
 
 function timeout()
 {
-	// We need to set the timeout *first*, otherwise if we
-	// try to clear it later, we get behavior we don't want ...
+
+
     timer = setTimeout('timeout()', 30); 
 	animationManager.update();
 	objectManager.draw();	
@@ -251,7 +251,7 @@ function addControl(type, name, location) {
 	
     var controlBar = document.getElementById(tableEntry);
 	
-    //Append the element in page (in span).
+   
     controlBar.appendChild(element);
 	return element;
  
@@ -275,7 +275,7 @@ function addControlToAnimationBar(type,name,containerType)
 	
     var controlBar = document.getElementById("GeneralAnimationControls");
 	
-    //Append the element in page (in span).
+   
     controlBar.appendChild(tableEntry);
 	return element;
 	
@@ -336,10 +336,10 @@ function initCanvas()
 	
 	
 	
-    //Append the element in page (in span).
+   
     controlBar.appendChild(tableEntry);
 		
-    //tableEntry.appendChild(element);
+   
 
 	var speed = getCookie("VisualizationSpeed");
 	if (speed == null || speed == "")
@@ -420,7 +420,7 @@ function initCanvas()
 	heightEntry = addControlToAnimationBar("Text", canvas.height);
 	heightEntry.onkeydown = this.returnSubmit(heightEntry, animationManager.changeSize.bind(animationManager), 4, true);
 
-//	heightEntry.size = 4;
+
 	sizeButton = addControlToAnimationBar("Button", "Change Canvas Size");
 	
 	sizeButton.onclick = animationManager.changeSize.bind(animationManager) ;
@@ -443,45 +443,45 @@ function initCanvas()
 
 function AnimationManager(objectManager)
 {
-	// Holder for all animated objects.
-	// All animation is done by manipulating objects in\
-	// this container
+
+
+
 	this.animatedObjects = objectManager;
 
-	// Control variables for stopping / starting animation
+
 	
 	this.animationPaused = false;
 	this.awaitingStep = false;
 	this.currentlyAnimating = false;
 	
-	// Array holding the code for the animation.  This is 
-	// an array of strings, each of which is an animation command
-	// currentAnimation is an index into this array
+
+
+
 	this.AnimationSteps = [];
 	this.currentAnimation = 0;
 	
 	this.previousAnimationSteps = [];
 	
-	// Control variables for where we are in the current animation block.
-	//  currFrame holds the frame number of the current animation block,
-	//  while animationBlockLength holds the length of the current animation
-	//  block (in frame numbers).  
+
+
+
+
 	this.currFrame = 0;
 	this.animationBlockLength = 0;
 	
-	//  The animation block that is currently running.  Array of singleAnimations
+
 	this.currentBlock = null;
 	
-	/////////////////////////////////////
-	// Variables for handling undo. 
-	////////////////////////////////////
-	//  A stack of UndoBlock objects (subclassed, UndoBlock is an abstract base class)
-	//  each of which can undo a single animation element
+
+
+
+
+
 	this.undoStack = [];
 	this.doingUndo = false;
 	
-	// A stack containing the beginning of each animation block, as an index
-	// into the AnimationSteps array
+
+
 	this.undoAnimationStepIndices = [];
 	this.undoAnimationStepIndicesStack = [];
 	
@@ -492,7 +492,7 @@ function AnimationManager(objectManager)
 		return (to - from) * percent + from;
 	}
 	
-	// Pause / unpause animation
+
 	this.SetPaused = function(pausedValue)
 	{
 		this.animationPaused = pausedValue;
@@ -502,7 +502,7 @@ function AnimationManager(objectManager)
 		}
 	}
 	
-	// Set the speed of the animation, from 0 (slow) to 100 (fast)
+
 	this.SetSpeed = function(newSpeed)
 	{
 		this.animationBlockLength = Math.floor((100-newSpeed) / 2);
@@ -660,25 +660,25 @@ function AnimationManager(objectManager)
 			{
 				if (nextCommand.length == 9)
 				{
-					this.animatedObjects.addRectangleObject(parseInt(nextCommand[1]), // ID
-															nextCommand[2], // Label
-															parseInt(nextCommand[3]), // w
-															parseInt(nextCommand[4]), // h
-															nextCommand[7], // xJustify
-															nextCommand[8],// yJustify
-															"#ffffff", // background color
-					                                        "#000000"); // foreground color
+					this.animatedObjects.addRectangleObject(parseInt(nextCommand[1]),
+															nextCommand[2],
+															parseInt(nextCommand[3]),
+															parseInt(nextCommand[4]),
+															nextCommand[7],
+															nextCommand[8],
+															"#ffffff",
+					                                        "#000000");
 				}
 				else
 				{
-					this.animatedObjects.addRectangleObject(parseInt(nextCommand[1]), // ID
-															nextCommand[2], // Label
-															parseInt(nextCommand[3]), // w
-															parseInt(nextCommand[4]), // h
-															"center", // xJustify
-															"center",// yJustify
-															"#ffffff", // background color
-					                                        "#000000"); // foreground color
+					this.animatedObjects.addRectangleObject(parseInt(nextCommand[1]),
+															nextCommand[2],
+															parseInt(nextCommand[3]),
+															parseInt(nextCommand[4]),
+															"center",
+															"center",
+															"#ffffff",
+					                                        "#000000");
 					
 				}
 				if (nextCommand.length > 6)
@@ -867,7 +867,7 @@ function AnimationManager(objectManager)
 			else if (nextCommand[0].toUpperCase() == "SETLAYER")
 			{
 				this.animatedObjects.setLayer(parseInt(nextCommand[1]), parseInt(nextCommand[2]));
-				//TODO: Add undo information here
+			
 			}
 			
 			
@@ -990,17 +990,17 @@ function AnimationManager(objectManager)
 			}
 			else
 			{
-	//			throw "Unknown command: " + nextCommand[0];					
+
 			}
 			
 			this.currentAnimation = this.currentAnimation+1;
 		}
 		this.currFrame = 0;
 
-		// Hack:  If there are not any animations, and we are currently paused,
-		// then set the current frame to the end of the anumation, so that we will
-		// advance immediagely upon the next step button.  If we are not paused, then
-		// animate as normal.
+	
+	
+	
+	
 
 		if (!anyAnimations && this.animationPaused || (!anyAnimations && this.currentAnimation == this.AnimationSteps.length) )
 		{
@@ -1010,8 +1010,8 @@ function AnimationManager(objectManager)
 		this.undoStack.push(undoBlock);
 	}
 
-	//  Start a new animation.  The input parameter commands is an array of strings,
-	//  which represents the animation to start
+
+
 	this.StartNewAnimation =  function(commands)
 	{
 		clearTimeout(timer);
@@ -1038,19 +1038,19 @@ function AnimationManager(objectManager)
 	}
 	
 	
-	// Step backwards one step.  A no-op if the animation is not currently paused
+
 	this.stepBack = function()
 	{
 		if (this.awaitingStep && this.undoStack != null && this.undoStack.length != 0)
 		{
-			//  TODO:  Get events working correctly!
+		
 			this.fireEvent("AnimationStarted","NoData");
 			clearTimeout(timer);
 
 			this.awaitingStep = false;
 			this.undoLastBlock();
-			// Re-kick thie timer.  The timer may or may not be running at this point,
-			// so to be safe we'll kill it and start it again.
+		
+		
 			clearTimeout(timer);
 			timer = setTimeout('timeout()', 30); 
 
@@ -1061,15 +1061,15 @@ function AnimationManager(objectManager)
 			this.fireEvent("AnimationStarted","NoData");
 			this.currentlyAnimating = true;
 			this.undoLastBlock();
-			// Re-kick thie timer.  The timer may or may not be running at this point,
-			// so to be safe we'll kill it and start it again.
+		
+		
 			clearTimeout(timer);
 			timer = setTimeout('timeout()', 30); 
 			
 		}
 		
 	}
-	// Step forwards one step.  A no-op if the animation is not currently paused
+
 	this.step = function()
 	{
 		if (this.awaitingStep)
@@ -1077,15 +1077,15 @@ function AnimationManager(objectManager)
 			this.startNextBlock();
 			this.fireEvent("AnimationStarted","NoData");
 			this.currentlyAnimating = true;
-			// Re-kick thie timer.  The timer should be going now, but we've had some difficulty with
-			// it timing itself out, so we'll be safe and kick it now.
+		
+		
 			clearTimeout(timer);
 			timer = setTimeout('timeout()', 30); 			
 		}
 	}
 	
 	
-	/// WARNING:  Could be dangerous to call while an animation is running ...
+
 	this.clearHistory = function()
 	{
 		this.undoStack = [];
@@ -1201,7 +1201,7 @@ function AnimationManager(objectManager)
 		}
 		this.doingUndo = false;
 		
-		// If we are at the final end of the animation ...
+	
 		if (this.undoAnimationStepIndices.length == 0)
 		{
 			this.awaitingStep = false;
@@ -1235,7 +1235,7 @@ function AnimationManager(objectManager)
 		if (this.undoAnimationStepIndices.length == 0)
 		{
 			
-			// Nothing on the undo stack.  Return
+		
 			return;
 			
 		}
@@ -1255,10 +1255,10 @@ function AnimationManager(objectManager)
 			}
 			this.currFrame = 0;
 			
-			// Hack:  If there are not any animations, and we are currently paused,
-			// then set the current frame to the end of the animation, so that we will
-			// advance immediagely upon the next step button.  If we are not paused, then
-			// animate as normal.
+		
+		
+		
+		
 			if (!anyAnimations && this.animationPaused  )
 			{
 				this.currFrame = this.animationBlockLength;
@@ -1270,8 +1270,8 @@ function AnimationManager(objectManager)
 	this.setLayer = function(shown, layers)
 	{
 		this.animatedObjects.setLayer(shown, layers)
-		// Drop in an extra draw call here, just in case we are not
-		// in the middle of an update loop when this changes
+	
+	
 		this.animatedObjects.draw();
 	}
 	
@@ -1279,8 +1279,8 @@ function AnimationManager(objectManager)
 	this.setAllLayers = function(layers)
 	{
 		this.animatedObjects.setAllLayers(layers);
-		// Drop in an extra draw call here, just in case we are not
-		// in the middle of an update loop when this changes
+	
+	
 		this.animatedObjects.draw();
 	}
 	 
