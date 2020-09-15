@@ -1,31 +1,31 @@
-// Copyright 2011 David Galles, University of San Francisco. All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without modification, are
-// permitted provided that the following conditions are met:
-//
-// 1. Redistributions of source code must retain the above copyright notice, this list of
-// conditions and the following disclaimer.
-//
-// 2. Redistributions in binary form must reproduce the above copyright notice, this list
-// of conditions and the following disclaimer in the documentation and/or other materials
-// provided with the distribution.
-//
-// THIS SOFTWARE IS PROVIDED BY <COPYRIGHT HOLDER> ``AS IS'' AND ANY EXPRESS OR IMPLIED
-// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-// FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
-// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-// ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-// The views and conclusions contained in the software and documentation are those of the
-// authors and should not be interpreted as representing official policies, either expressed
-// or implied, of the University of San Francisco
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
-// Base "class": UndoBlock
+ 
 
 function UndoBlock()
 {
@@ -42,9 +42,9 @@ UndoBlock.prototype.undoInitialStep = function(world)
 	
 }
 
-////////////////////////////////////////////////////////////
-// UndoMove
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoMove(id, fmX, fmy, tx, ty)
 {
@@ -66,9 +66,9 @@ UndoMove.prototype.addUndoAnimation = function (animationList)
 	return true;
 }
 
-////////////////////////////////////////////////////////////
-// UndoCreate
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoCreate(id)
 {
@@ -84,9 +84,9 @@ UndoCreate.prototype.undoInitialStep = function(world)
 			world.removeObject(this.objectID);
 }
 
-////////////////////////////////////////////////////////////
-// UndoHighlight
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoHighlight(id, val)
 {
@@ -103,9 +103,9 @@ UndoHighlight.prototype.undoInitialStep = function(world)
 }
 
 
-////////////////////////////////////////////////////////////
-// UndoSetHeight
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetHeight(id, val)
 {
@@ -121,9 +121,9 @@ UndoSetHeight.prototype.undoInitialStep = function(world)
 	world.setHeight(this.objectID, this.height);
 }
 
-////////////////////////////////////////////////////////////
-// UndoSetWidth
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetWidth(id, val)
 {
@@ -140,9 +140,9 @@ UndoSetWidth.prototype.undoInitialStep = function(world)
 }
 
 
-////////////////////////////////////////////////////////////
-// UndoSetNumElements
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 function UndoSetNumElements(obj, newNumElems)
 {
 	this.objectID = obj.objectID;
@@ -179,9 +179,9 @@ UndoSetNumElements.prototype.undoInitialStep = function(world)
 }
 
 
-////////////////////////////////////////////////////////////
-// UndoSetAlpha
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetAlpha(id, alph)
 {
@@ -197,9 +197,9 @@ UndoSetAlpha.prototype.undoInitialStep = function(world)
 	world.setAlpha(this.objectID, this.alphaVal);
 }
 
-////////////////////////////////////////////////////////////
-// UndoSetNull
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetNull(id, nv)
 {
@@ -215,9 +215,9 @@ UndoSetNull.prototype.undoInitialStep = function(world)
 	world.setNull(this.objectID, this.nullVal);
 }
 
-////////////////////////////////////////////////////////////
-// UndoSetForegroundColor
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetForegroundColor(id, color)
 {
@@ -233,9 +233,9 @@ UndoSetForegroundColor.prototype.undoInitialStep =  function (world)
 	world.setForegroundColor(this.objectID, this.color);
 }
 
-////////////////////////////////////////////////////////////
-// UndoSetBackgroundColor
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetBackgroundColor(id, color)
 {
@@ -253,9 +253,9 @@ UndoSetBackgroundColor.prototype.undoInitialStep =  function (world)
 
 
 
-////////////////////////////////////////////////////////////
-// UndoSetHighlightIndex
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetHighlightIndex(id, index)
 {
@@ -273,9 +273,9 @@ UndoSetHighlightIndex.prototype.undoInitialStep =  function (world)
 
 
 
-////////////////////////////////////////////////////////////
-// UndoSetText
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 
 
@@ -293,9 +293,9 @@ UndoSetText.prototype.undoInitialStep = function(world)
 {
 	world.setText(this.objectID, this.newText, this.labelIndex);
 }
-////////////////////////////////////////////////////////////
-// UndoSetTextColor
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 
 
@@ -316,9 +316,9 @@ UndoSetTextColor.prototype.undoInitialStep = function(world)
 
 
 
-////////////////////////////////////////////////////////////
-// UndoHighlightEdge
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoHighlightEdge(from, to, val)
 {
@@ -336,9 +336,9 @@ UndoHighlightEdge.prototype.undoInitialStep = function(world)
 }
 
 
-////////////////////////////////////////////////////////////
-// UndoSetEdgeColor
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetEdgeColor(from, to, oldColor)
 {
@@ -356,9 +356,9 @@ UndoSetEdgeColor.prototype.undoInitialStep = function(world)
 }
 
 
-////////////////////////////////////////////////////////////
-// UndoSetEdgeAlpha
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetEdgeAlpha(from, to, oldAplha)
 {
@@ -375,9 +375,9 @@ UndoSetEdgeAlpha.prototype.undoInitialStep = function(world)
 	world.setEdgeAlpha(this.fromID, this.toID, this.alpha);
 }
 
-////////////////////////////////////////////////////////////
-// UndoSetPosition
-////////////////////////////////////////////////////////////
+ 
+ 
+ 
 
 function UndoSetPosition(id, x, y)
 {

@@ -1,28 +1,28 @@
-// Copyright 2011 David Galles, University of San Francisco. All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without modification, are
-// permitted provided that the following conditions are met:
-//
-// 1. Redistributions of source code must retain the above copyright notice, this list of
-// conditions and the following disclaimer.
-//
-// 2. Redistributions in binary form must reproduce the above copyright notice, this list
-// of conditions and the following disclaimer in the documentation and/or other materials
-// provided with the distribution.
-//
-// THIS SOFTWARE IS PROVIDED BY <COPYRIGHT HOLDER> ``AS IS'' AND ANY EXPRESS OR IMPLIED
-// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-// FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
-// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-// ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-// The views and conclusions contained in the software and documentation are those of the
-// authors and should not be interpreted as representing official policies, either expressed
-// or implied, of the University of San Francisco
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 function AnimatedObject()
 {
@@ -94,13 +94,13 @@ AnimatedObject.prototype.getHighlight = function()
 
 AnimatedObject.prototype.getWidth = function()
 {
-	// TODO:  Do we want to throw here?  Should always override this ...
+ 
 	return 0;
 }
 
 AnimatedObject.prototype.getHeight = function()
 {
-	// TODO:  Do we want to throw here?  Should always override this ...
+ 
 	return 0;
 }
 
@@ -116,7 +116,7 @@ AnimatedObject.prototype.centerX = function()
 
 AnimatedObject.prototype.setWidth = function(newWidth)
 {
-	// TODO:  Do we want to throw here?  Should always override this ... 
+ 
 }
 
 
@@ -151,16 +151,16 @@ AnimatedObject.prototype.getAlignBottomPos = function(otherObject)
 
 AnimatedObject.prototype.alignLeft = function(otherObject)
 {
-	// Assuming centering.  Overridden method could modify if not centered
-	//  (See AnimatedLabel, for instance)
+ 
+ 
 	this.y = otherObject.centerY();
 	this.x = otherObject.right() + this.getWidth() / 2;	
 }
 
 AnimatedObject.prototype.alignRight = function(otherObject)
 {
-	// Assuming centering.  Overridden method could modify if not centered
-	//  (See AnimatedLabel, for instance)
+ 
+ 
 	this.y = otherObject.centerY();
 	this.x = otherObject.left() - this.getWidth() / 2;	
 }
@@ -168,7 +168,7 @@ AnimatedObject.prototype.alignRight = function(otherObject)
 
 AnimatedObject.prototype.alignTop = function(otherObject)
 {
-	// Assuming centering.  Overridden method could modify if not centered
+ 
 	
 	this.x = otherObject.centerX();
 	this.y = otherObject.top() - this.getHeight() / 2;	
@@ -301,7 +301,7 @@ AnimatedObject.prototype.getHeadPointerAttachPos = function(fromX, fromY)
 		
 /*public function createUndoDelete() : UndoBlock
 {
-			// Must be overriden!
+		 
 			return null;
 }
 */		
