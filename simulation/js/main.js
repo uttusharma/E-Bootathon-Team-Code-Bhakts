@@ -46,3 +46,16 @@ function popC(){
     codeC.setAttribute("hidden","true");
     codePy.removeAttribute("hidden");
 }
+ 
+
+
+
+
+
+
+function gotoPlayground(){
+    var slide = document.getElementById("slide3");
+    var nextSlide = document.getElementById("container");
+    slide.setAttribute("hidden","true");
+    nextSlide.removeAttribute("hidden");
+}

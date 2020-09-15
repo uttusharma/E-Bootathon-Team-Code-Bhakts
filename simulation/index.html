@@ -82,6 +82,7 @@
       To see push() implementation code just select the language below:
     </p>
     <div id="pushC" hidden="true">
+      <h3>Implementation in C</h3>
       <pre class="de1"><span class="co2">#include &lt;stdio.h&gt;</span>
         <span class="co2">#include &lt;stdlib.h&gt;</span>
         &nbsp;
@@ -111,6 +112,7 @@
         <span class="br0">}</span></pre>
     </div>
     <div id="pushPy" hidden="true">
+      <h3>Implementation in Python</h3>
       <pre class="de1"><span class="kw1">class</span> Node:
     <span class="kw1">def</span> <span class="kw4">__init__</span><span class="br0">(</span><span class="kw2">self</span><span class="sy0">,</span> data<span class="br0">)</span>:
        <span class="kw2">self</span>.<span class="me1">data</span> <span class="sy0">=</span> data
@@ -157,71 +159,48 @@
     <img src="img/pop1.gif" alt="POP">
     <h3>Algorithm for pop</h3>
     <p>A Pop operation may involve the following steps &minus;</p>
-    <p>A Pop operation may involve the following steps &minus;</p>
-    <p><strong>Step 1</strong> &minus; Checks if the stack is empty.</p>
-    <p>&nbsp;</p>
+    <p><strong>Step 1</strong> &minus; Checks if the stack is empty. </p>
     <p><strong>Step 2</strong> &minus; If the stack is empty, produces an error and exit.</p>
-    <p>&nbsp;</p>
     <p><strong>Step 3</strong> &minus; If the stack is not empty, accesses the data element at which
       <strong>top</strong> is pointing.</p>
-    <p>&nbsp;</p>
     <p><strong>Step 4</strong> &minus; Decreases the value of top by 1.</p>
-    <p>&nbsp;</p>
     <p><strong>Step 5</strong> &minus; Returns success.</p>
-    To see push() implementation code just select the language below:
-    </p>
-    <div id="pushC" hidden="true">
-      <pre class="de1"><span class="co2">#include &lt;stdio.h&gt;</span>
-        <span class="co2">#include &lt;stdlib.h&gt;</span>
-        &nbsp;
-        <span class="kw4">struct</span> node
-        <span class="br0">{</span>
-            <span class="kw4">int</span> info<span class="sy0">;</span>
-            <span class="kw4">struct</span> node <span class="sy0">*</span>ptr<span class="sy0">;</span>
-        <span class="br0">}</span><span class="sy0">*</span>top<span class="sy0">,*</span>top1<span class="sy0">,*</span>temp<span class="sy0">;</span>
+    <div id="popC" hidden="true">
+      <h3>Implementation in C</h3>
+      <pre>/* Pop Operation on stack */
+        void pop()
+        {
+         top1 = top;
+         if(top1 == NULL)
+         {
+         printf("\n Error : Trying to pop from empty stack");
+         return;
+         }
+         else
+         top1 = top1-&gt;ptr;
+         printf("\n Popped value : %d", top-&gt;info);
+         free(top);
+         top = top1;
+         count--;
+        }
         &nbsp;</pre>
-      <pre class="de1"><span class="coMULTI">/* Push data into stack */</span>
-        <span class="kw4">void</span> push<span class="br0">(</span><span class="kw4">int</span> data<span class="br0">)</span>
-        <span class="br0">{</span>
-            <span class="kw1">if</span> <span class="br0">(</span>top <span class="sy0">==</span> NULL<span class="br0">)</span>
-            <span class="br0">{</span>
-                top <span class="sy0">=</span><span class="br0">(</span><span class="kw4">struct</span> node <span class="sy0">*</span><span class="br0">)</span><span class="kw3">malloc</span><span class="br0">(</span><span class="nu0">1</span><span class="sy0">*</span><span class="kw4">sizeof</span><span class="br0">(</span><span class="kw4">struct</span> node<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
-                top<span class="sy0">-&gt;</span>ptr <span class="sy0">=</span> NULL<span class="sy0">;</span>
-                top<span class="sy0">-&gt;</span>info <span class="sy0">=</span> data<span class="sy0">;</span>
-            <span class="br0">}</span>
-            <span class="kw1">else</span>
-            <span class="br0">{</span>
-                temp <span class="sy0">=</span><span class="br0">(</span><span class="kw4">struct</span> node <span class="sy0">*</span><span class="br0">)</span><span class="kw3">malloc</span><span class="br0">(</span><span class="nu0">1</span><span class="sy0">*</span><span class="kw4">sizeof</span><span class="br0">(</span><span class="kw4">struct</span> node<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
-                temp<span class="sy0">-&gt;</span>ptr <span class="sy0">=</span> top<span class="sy0">;</span>
-                temp<span class="sy0">-&gt;</span>info <span class="sy0">=</span> data<span class="sy0">;</span>
-                top <span class="sy0">=</span> temp<span class="sy0">;</span>
-            <span class="br0">}</span>
-            count<span class="sy0">++;</span>
-        <span class="br0">}</span></pre>
     </div>
-    <div id="pushPy" hidden="true">
-      <pre class="de1"><span class="kw1">class</span> Node:
-    <span class="kw1">def</span> <span class="kw4">__init__</span><span class="br0">(</span><span class="kw2">self</span><span class="sy0">,</span> data<span class="br0">)</span>:
-       <span class="kw2">self</span>.<span class="me1">data</span> <span class="sy0">=</span> data
-       <span class="kw2">self</span>.<span class="me1">next</span> <span class="sy0">=</span> <span class="kw2">None</span>
-&nbsp;
-<span class="kw1">class</span> Stack:
-    <span class="kw1">def</span> <span class="kw4">__init__</span><span class="br0">(</span><span class="kw2">self</span><span class="br0">)</span>:
-        <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> <span class="kw2">None</span>
-&nbsp;
-    <span class="kw1">def</span> push<span class="br0">(</span><span class="kw2">self</span><span class="sy0">,</span> data<span class="br0">)</span>:
+    <div id="popPy" hidden="true">
+      <h3>Implementation in Python</h3>
+      <pre class="de1"><span class="kw1">def</span> pop<span class="br0">(</span><span class="kw2">self</span><span class="br0">)</span>:
         <span class="kw1">if</span> <span class="kw2">self</span>.<span class="me1">head</span> <span class="kw1">is</span> <span class="kw2">None</span>:
-            <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> Node<span class="br0">(</span>data<span class="br0">)</span>
+            <span class="kw1">return</span> <span class="kw2">None</span>
         <span class="kw1">else</span>:
-            new_node <span class="sy0">=</span> Node<span class="br0">(</span>data<span class="br0">)</span>
-            new_node.<span class="me1">next</span> <span class="sy0">=</span> <span class="kw2">self</span>.<span class="me1">head</span>
-            <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> new_node</pre>
+            popped <span class="sy0">=</span> <span class="kw2">self</span>.<span class="me1">head</span>.<span class="me1">data</span>
+            <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> <span class="kw2">self</span>.<span class="me1">head</span>.<span class="me1">next</span>
+            <span class="kw1">return</span> popped</pre>
+      <pre>&nbsp;</pre>
     </div>
     <button onclick="popC()">C</button>
     <button onclick="popPy()">Python</button>
     <br>
     <br>
-    <button onclick="startTutorial()">Launch Playground</button>
+    <button onclick="gotoPlayground()">Launch Playground</button>
   </div>
   <!-- SLIDE END -->
 
@@ -247,7 +226,6 @@
 
     <div id="footer">
       <p>
-        <a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">CodeBhakts</a>
       </p>
     </div>
   </div>
