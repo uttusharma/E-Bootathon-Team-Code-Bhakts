@@ -1,63 +1,272 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <title>Linked List Stack Visualization</title>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <link rel="stylesheet" href="./css/visualizationPageStyle.css" />
+  <title>Linked List Stack Visualization</title>
 
-    <link rel="stylesheet" href="./css/jquery-ui-1.8.11.custom.css" />
-  </head>
+  <link rel="stylesheet" href="./css/visualizationPageStyle.css" />
 
-  <body
-    onload="init();"
-    class="VisualizationMainPage"
-    data-gr-c-s-loaded="true"
-  >
-    <div id="container">
-      <div id="header">
-        <h1 style="display: inline">CodeBhakts</h1>
-        <h1 style="display: inline; margin-left: 20%">
-          Stack (Linked List Implementation)
-        </h1>
+  <link rel="stylesheet" href="./css/jquery-ui-1.8.11.custom.css" />
+</head>
+
+<body onload="init();" class="VisualizationMainPage" data-gr-c-s-loaded="true">
+  <!-- INTRO SLIDE -->
+  <div id="intro">
+    <H1>Stack Implementation using linked list</H1>
+    <p>Press next button to get started</p>
+    <button onclick="startTutorial()">Next</button>
+  </div>
+
+
+
+
+  <div id="slide1" hidden=true>
+    <H1>Stack Implementation using linked list</H1>
+    <h2>Introduction</h2>
+    <p>
+      Implement a stack using single linked list concept. all the single linked list operations perform based on Stack
+      operations LIFO(last in first out) and with the help of that knowledge we are going to implement a stack using
+      single linked list. using single linked lists so how to implement here it is linked list means what we are storing
+      the information in the form of nodes and we need to follow the stack rules and we need to implement using single
+      linked list nodes so what are the rules we need to follow in the implementation of a stack a simple rule that is
+      last in first out and all the operations we should perform so with the help of a top variable only with the help
+      of top variables are how to insert the elements let’s see
+    </p>
+
+    <p>The main advantage of using linked list over an arrays is that it is possible to implements a stack that can
+      shrink or grow as much as needed. In using array will put a restriction to the maximum capacity of the array which
+      can lead to stack overflow. Here each new node will be dynamically allocate. so overflow is not possible.</p>
+    <p><strong>Stack Operations:</strong></p>
+    <ol>
+      <li><strong>push() :</strong> Insert the
+        element into linked list nothing but which is the top node of Stack.</li>
+      <li><strong>pop() :</strong> Return top
+        element from the Stack and move the top pointer to the second node of linked list or Stack.</li>
+      <li><strong>peek() :</strong> Return the top
+        element.</li>
+    </ol>
+    <p>
+      We will go through and explain each operation. Press next
+    </p>
+    <button onclick="gotoSlide2()">Next</button>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div id="slide2" hidden=true>
+    <H1>Stack Implementation using linked list</H1>
+    <h2>Push operation in stack </h2>
+    <p>
+      In case of stack Insertion of any item in stack is called push. In stack any item is inserted from top of the
+      stack, When you insert any item in stack top will be increased by 1.
+    </p>
+
+
+    <h3>Time Complexity : o(1)</h3>
+
+    <img src="img/push1.gif" alt="Push">
+    <h3>Algorithm for push</h3>
+    <p>Adding a node to the stack is referred to as <strong>push</strong> operation. Pushing an element to a stack in
+      linked list implementation is different from that of an array implementation. In order to push an element onto the
+      stack, the following steps are involved.</p>
+    <ol class="points">
+      <li>Create a node first and allocate memory to it.</li>
+      <li>If the list is empty then the item is to be pushed as the start node of the list. This includes assigning
+        value to the data part of the node and assign null to the address part of the node.</li>
+      <li>If there are some nodes in the list already, then we have to add the new element in the beginning of the list
+        (to not violate the property of the stack). For this purpose, assign the address of the starting element to the
+        address field of the new node and make the new node, the starting node of the list.</li>
+    </ol>
+    <p>
+      To see push() implementation code just select the language below:
+    </p>
+    <div id="pushC" hidden="true">
+      <pre class="de1"><span class="co2">#include &lt;stdio.h&gt;</span>
+        <span class="co2">#include &lt;stdlib.h&gt;</span>
+        &nbsp;
+        <span class="kw4">struct</span> node
+        <span class="br0">{</span>
+            <span class="kw4">int</span> info<span class="sy0">;</span>
+            <span class="kw4">struct</span> node <span class="sy0">*</span>ptr<span class="sy0">;</span>
+        <span class="br0">}</span><span class="sy0">*</span>top<span class="sy0">,*</span>top1<span class="sy0">,*</span>temp<span class="sy0">;</span>
+        &nbsp;</pre>
+      <pre class="de1"><span class="coMULTI">/* Push data into stack */</span>
+        <span class="kw4">void</span> push<span class="br0">(</span><span class="kw4">int</span> data<span class="br0">)</span>
+        <span class="br0">{</span>
+            <span class="kw1">if</span> <span class="br0">(</span>top <span class="sy0">==</span> NULL<span class="br0">)</span>
+            <span class="br0">{</span>
+                top <span class="sy0">=</span><span class="br0">(</span><span class="kw4">struct</span> node <span class="sy0">*</span><span class="br0">)</span><span class="kw3">malloc</span><span class="br0">(</span><span class="nu0">1</span><span class="sy0">*</span><span class="kw4">sizeof</span><span class="br0">(</span><span class="kw4">struct</span> node<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+                top<span class="sy0">-&gt;</span>ptr <span class="sy0">=</span> NULL<span class="sy0">;</span>
+                top<span class="sy0">-&gt;</span>info <span class="sy0">=</span> data<span class="sy0">;</span>
+            <span class="br0">}</span>
+            <span class="kw1">else</span>
+            <span class="br0">{</span>
+                temp <span class="sy0">=</span><span class="br0">(</span><span class="kw4">struct</span> node <span class="sy0">*</span><span class="br0">)</span><span class="kw3">malloc</span><span class="br0">(</span><span class="nu0">1</span><span class="sy0">*</span><span class="kw4">sizeof</span><span class="br0">(</span><span class="kw4">struct</span> node<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+                temp<span class="sy0">-&gt;</span>ptr <span class="sy0">=</span> top<span class="sy0">;</span>
+                temp<span class="sy0">-&gt;</span>info <span class="sy0">=</span> data<span class="sy0">;</span>
+                top <span class="sy0">=</span> temp<span class="sy0">;</span>
+            <span class="br0">}</span>
+            count<span class="sy0">++;</span>
+        <span class="br0">}</span></pre>
+    </div>
+    <div id="pushPy" hidden="true">
+      <pre class="de1"><span class="kw1">class</span> Node:
+    <span class="kw1">def</span> <span class="kw4">__init__</span><span class="br0">(</span><span class="kw2">self</span><span class="sy0">,</span> data<span class="br0">)</span>:
+       <span class="kw2">self</span>.<span class="me1">data</span> <span class="sy0">=</span> data
+       <span class="kw2">self</span>.<span class="me1">next</span> <span class="sy0">=</span> <span class="kw2">None</span>
+&nbsp;
+<span class="kw1">class</span> Stack:
+    <span class="kw1">def</span> <span class="kw4">__init__</span><span class="br0">(</span><span class="kw2">self</span><span class="br0">)</span>:
+        <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> <span class="kw2">None</span>
+&nbsp;
+    <span class="kw1">def</span> push<span class="br0">(</span><span class="kw2">self</span><span class="sy0">,</span> data<span class="br0">)</span>:
+        <span class="kw1">if</span> <span class="kw2">self</span>.<span class="me1">head</span> <span class="kw1">is</span> <span class="kw2">None</span>:
+            <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> Node<span class="br0">(</span>data<span class="br0">)</span>
+        <span class="kw1">else</span>:
+            new_node <span class="sy0">=</span> Node<span class="br0">(</span>data<span class="br0">)</span>
+            new_node.<span class="me1">next</span> <span class="sy0">=</span> <span class="kw2">self</span>.<span class="me1">head</span>
+            <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> new_node</pre>
+    </div>
+    <button onclick="pushC()">C</button>
+    <button onclick="pushPy()">Python</button>
+    <br>
+    <br>
+    <button onclick="gotoSlide3()">Next</button>
+  </div>
+  <!-- SLIDE END -->
+
+
+  <!-- SLIDE 3 -->
+  <div id="slide3" hidden=true>
+    <H1>Stack Implementation using linked list</H1>
+    <h2>Pop operation in stack </h2>
+    <p>Deleting a node from the top of stack is referred to as <strong>pop</strong> operation. Deleting a node from the
+      linked list implementation of stack is different from that in the array implementation. In order to pop an element
+      from the stack, we need to follow the following steps :</p>
+    <ol class="points">
+      <li><strong>Check for the underflow condition:</strong> The underflow condition occurs when we try to pop from an
+        already empty stack. The stack will be empty if the head pointer of the list points to null.</li>
+      <li><strong>Adjust the head pointer accordingly:</strong> In stack, the elements are popped only from one end,
+        therefore, the value stored in the head pointer must be deleted and the node must be freed. The next node of the
+        head node now becomes the head node.</li>
+    </ol>
+    <p>&nbsp;</p>
+    <h3>Time Complexity : o(n)</h3>
+
+    <img src="img/pop1.gif" alt="POP">
+    <h3>Algorithm for pop</h3>
+    <p>A Pop operation may involve the following steps &minus;</p>
+    <p>A Pop operation may involve the following steps &minus;</p>
+    <p><strong>Step 1</strong> &minus; Checks if the stack is empty.</p>
+    <p>&nbsp;</p>
+    <p><strong>Step 2</strong> &minus; If the stack is empty, produces an error and exit.</p>
+    <p>&nbsp;</p>
+    <p><strong>Step 3</strong> &minus; If the stack is not empty, accesses the data element at which
+      <strong>top</strong> is pointing.</p>
+    <p>&nbsp;</p>
+    <p><strong>Step 4</strong> &minus; Decreases the value of top by 1.</p>
+    <p>&nbsp;</p>
+    <p><strong>Step 5</strong> &minus; Returns success.</p>
+    To see push() implementation code just select the language below:
+    </p>
+    <div id="pushC" hidden="true">
+      <pre class="de1"><span class="co2">#include &lt;stdio.h&gt;</span>
+        <span class="co2">#include &lt;stdlib.h&gt;</span>
+        &nbsp;
+        <span class="kw4">struct</span> node
+        <span class="br0">{</span>
+            <span class="kw4">int</span> info<span class="sy0">;</span>
+            <span class="kw4">struct</span> node <span class="sy0">*</span>ptr<span class="sy0">;</span>
+        <span class="br0">}</span><span class="sy0">*</span>top<span class="sy0">,*</span>top1<span class="sy0">,*</span>temp<span class="sy0">;</span>
+        &nbsp;</pre>
+      <pre class="de1"><span class="coMULTI">/* Push data into stack */</span>
+        <span class="kw4">void</span> push<span class="br0">(</span><span class="kw4">int</span> data<span class="br0">)</span>
+        <span class="br0">{</span>
+            <span class="kw1">if</span> <span class="br0">(</span>top <span class="sy0">==</span> NULL<span class="br0">)</span>
+            <span class="br0">{</span>
+                top <span class="sy0">=</span><span class="br0">(</span><span class="kw4">struct</span> node <span class="sy0">*</span><span class="br0">)</span><span class="kw3">malloc</span><span class="br0">(</span><span class="nu0">1</span><span class="sy0">*</span><span class="kw4">sizeof</span><span class="br0">(</span><span class="kw4">struct</span> node<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+                top<span class="sy0">-&gt;</span>ptr <span class="sy0">=</span> NULL<span class="sy0">;</span>
+                top<span class="sy0">-&gt;</span>info <span class="sy0">=</span> data<span class="sy0">;</span>
+            <span class="br0">}</span>
+            <span class="kw1">else</span>
+            <span class="br0">{</span>
+                temp <span class="sy0">=</span><span class="br0">(</span><span class="kw4">struct</span> node <span class="sy0">*</span><span class="br0">)</span><span class="kw3">malloc</span><span class="br0">(</span><span class="nu0">1</span><span class="sy0">*</span><span class="kw4">sizeof</span><span class="br0">(</span><span class="kw4">struct</span> node<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+                temp<span class="sy0">-&gt;</span>ptr <span class="sy0">=</span> top<span class="sy0">;</span>
+                temp<span class="sy0">-&gt;</span>info <span class="sy0">=</span> data<span class="sy0">;</span>
+                top <span class="sy0">=</span> temp<span class="sy0">;</span>
+            <span class="br0">}</span>
+            count<span class="sy0">++;</span>
+        <span class="br0">}</span></pre>
+    </div>
+    <div id="pushPy" hidden="true">
+      <pre class="de1"><span class="kw1">class</span> Node:
+    <span class="kw1">def</span> <span class="kw4">__init__</span><span class="br0">(</span><span class="kw2">self</span><span class="sy0">,</span> data<span class="br0">)</span>:
+       <span class="kw2">self</span>.<span class="me1">data</span> <span class="sy0">=</span> data
+       <span class="kw2">self</span>.<span class="me1">next</span> <span class="sy0">=</span> <span class="kw2">None</span>
+&nbsp;
+<span class="kw1">class</span> Stack:
+    <span class="kw1">def</span> <span class="kw4">__init__</span><span class="br0">(</span><span class="kw2">self</span><span class="br0">)</span>:
+        <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> <span class="kw2">None</span>
+&nbsp;
+    <span class="kw1">def</span> push<span class="br0">(</span><span class="kw2">self</span><span class="sy0">,</span> data<span class="br0">)</span>:
+        <span class="kw1">if</span> <span class="kw2">self</span>.<span class="me1">head</span> <span class="kw1">is</span> <span class="kw2">None</span>:
+            <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> Node<span class="br0">(</span>data<span class="br0">)</span>
+        <span class="kw1">else</span>:
+            new_node <span class="sy0">=</span> Node<span class="br0">(</span>data<span class="br0">)</span>
+            new_node.<span class="me1">next</span> <span class="sy0">=</span> <span class="kw2">self</span>.<span class="me1">head</span>
+            <span class="kw2">self</span>.<span class="me1">head</span> <span class="sy0">=</span> new_node</pre>
+    </div>
+    <button onclick="popC()">C</button>
+    <button onclick="popPy()">Python</button>
+    <br>
+    <br>
+    <button onclick="startTutorial()">Launch Playground</button>
+  </div>
+  <!-- SLIDE END -->
+
+  <div id="container" hidden="true">
+    <div id="header">
+      <h1 style="display: inline">CodeBhakts</h1>
+      <h1 style="display: inline; margin-left: 20%">
+        Stack (Linked List Implementation)
+      </h1>
+    </div>
+
+    <div id="mainContent">
+      <div id="algoControlSection">
+        <table id="AlgorithmSpecificControls"></table>
       </div>
 
-      <div id="mainContent">
-        <div id="algoControlSection">
-          <table id="AlgorithmSpecificControls"></table>
-        </div>
+      <canvas id="canvas" width="1000" height="500"></canvas>
 
-        <canvas id="canvas" width="1000" height="500"></canvas>
-
-        <div id="generalAnimationControlSection">
-          <table id="GeneralAnimationControls"></table>
-        </div>
-      </div>
-
-      <div id="footer">
-        <p>
-          <a
-            href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html"
-            >CodeBhakts</a
-          >
-        </p>
+      <div id="generalAnimationControlSection">
+        <table id="GeneralAnimationControls"></table>
       </div>
     </div>
-  </body>
-  <script src="./js/jquery-1.5.2.min.js"></script>
-  <script src="./js/jquery-ui-1.8.11.custom.min.js"></script>
-  <script type="text/javascript" src="./js/CustomEvents.js"></script>
-  <script type="text/javascript" src="./js/UndoFunctions.js"></script>
-  <script type="text/javascript" src="./js/AnimatedObject.js"></script>
-  <script type="text/javascript" src="./js/AnimatedLabel.js"></script>
-  <script type="text/javascript" src="./js/AnimatedCircle.js"></script>
-  <script type="text/javascript" src="./js/AnimatedRectangle.js"></script>
-  <script type="text/javascript" src="./js/AnimatedLinkedList.js"></script>
-  <script type="text/javascript" src="./js/HighlightCircle.js"></script>
-  <script type="text/javascript" src="./js/Line.js"></script>
-  <script type="text/javascript" src="./js/ObjectManager.js"></script>
-  <script type="text/javascript" src="./js/AnimationMain.js"></script>
-  <script type="text/javascript" src="./js/Algorithm.js"></script>
-  <script type="text/javascript" src="./js/StackLL.js"></script>
+
+    <div id="footer">
+      <p>
+        <a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">CodeBhakts</a>
+      </p>
+    </div>
+  </div>
+</body>
+<script src="./js/jquery-1.5.2.min.js"></script>
+<script src="./js/jquery-ui-1.8.11.custom.min.js"></script>
+<script type="text/javascript" src="./js/CustomEvents.js"></script>
+<script type="text/javascript" src="./js/UndoFunctions.js"></script>
+<script type="text/javascript" src="./js/AnimatedObject.js"></script>
+<script type="text/javascript" src="./js/AnimatedLabel.js"></script>
+<script type="text/javascript" src="./js/AnimatedCircle.js"></script>
+<script type="text/javascript" src="./js/AnimatedRectangle.js"></script>
+<script type="text/javascript" src="./js/AnimatedLinkedList.js"></script>
+<script type="text/javascript" src="./js/HighlightCircle.js"></script>
+<script type="text/javascript" src="./js/Line.js"></script>
+<script type="text/javascript" src="./js/ObjectManager.js"></script>
+<script type="text/javascript" src="./js/AnimationMain.js"></script>
+<script type="text/javascript" src="./js/Algorithm.js"></script>
+<script type="text/javascript" src="./js/StackLL.js"></script>
+<script type="text/javascript" src="./js/main.js"></script>
+
 </html>
